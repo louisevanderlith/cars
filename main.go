@@ -4,11 +4,10 @@ import (
 	"log"
 
 	_ "github.com/louisevanderlith/mango/core/auto"
-	"github.com/louisevanderlith/mango/pkg/enums"
+	"github.com/louisevanderlith/mango/enums"
 
 	"github.com/astaxie/beego"
-	"github.com/louisevanderlith/mango/app/auto/routers"
-	"github.com/louisevanderlith/mango/pkg"
+	"github.com/louisevanderlith/auto/routers"
 )
 
 func main() {
@@ -16,7 +15,7 @@ func main() {
 	mode := beego.BConfig.RunMode
 	name := beego.BConfig.AppName
 
-	srv := util.NewService(mode, name, enums.APP)
+	srv := mango.NewService(mode, name, enums.APP)
 
 	port := beego.AppConfig.String("httpport")
 	err := srv.Register(port)
