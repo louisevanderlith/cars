@@ -1,4 +1,4 @@
-package auto
+package core
 
 import (
 	"github.com/louisevanderlith/husk"

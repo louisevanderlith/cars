@@ -3,6 +3,7 @@ package routers
 import (
 	"github.com/astaxie/beego"
 	"github.com/louisevanderlith/cars/controllers"
+	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/control"
 )
 

@@ -5,5 +5,5 @@ Mango Web: Cars
 *$ go build
 *$ docker build -t avosa/cars:dev .
 *$ docker rm carsDEV
-*$ docker run -d --network host --name carsDEV avosa/cars:dev 
+*$ docker run -d -p 8081:8081 --network mango_net --name carsDEV avosa/cars:dev 
 *$ docker logs carsDEV

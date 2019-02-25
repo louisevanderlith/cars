@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 
-	_ "github.com/louisevanderlith/mango/core/auto"
+	_ "github.com/louisevanderlith/cars/core"
+	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/enums"
 
 	"github.com/astaxie/beego"
-	"github.com/louisevanderlith/auto/routers"
+	"github.com/louisevanderlith/cars/routers"
 )
 
 func main() {

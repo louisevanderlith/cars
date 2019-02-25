@@ -24,6 +24,8 @@ github.com/louisevanderlith/husk v0.0.0-20181202133139-ef9019913e69 h1:UV0sQzgik
 github.com/louisevanderlith/husk v0.0.0-20181202133139-ef9019913e69/go.mod h1:FiREVNZW48kA++iCekTEqFLcpe1m31+FQhd1ePm0YLA=
 github.com/louisevanderlith/mango v0.1.4 h1:0iQsYTOBTMGuyvMkNDJl4JW7XPr0FJGQvs7ZiLMRhq0=
 github.com/louisevanderlith/mango v0.1.4/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
+github.com/louisevanderlith/mango v0.1.12 h1:n0vd6QsplIGf7UxhPHwwZYZOrg8KS8Sa68r/GkQwls8=
+github.com/louisevanderlith/mango v0.1.12/go.mod h1:HgTP32VLyeos6GZCfMnPMWT9OcYe313qmL7ZUgfwSFQ=
 github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
 github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
