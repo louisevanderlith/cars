@@ -1,15 +1,35 @@
-FROM alpine:latest
+FROM golang:1.11 as builder
 
-COPY cars .
+WORKDIR /box
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
+COPY main.go .
+COPY controllers ./controllers
+COPY logic ./logic
+COPY routers ./routers
+
+RUN CGO_ENABLED="0" go build
+
+FROM google/dart AS pyltjie
+
+WORKDIR /arrow
+COPY static/dart ./assets/dart
+
+RUN mkdir -p assets/js
+COPY compiledart.sh .
+RUN sh ./compiledart.sh
+
+FROM scratch
+
+COPY --from=builder /box/cars .
+COPY --from=pyltjie /arrow/assets/js dist/js
 COPY conf conf
 COPY views views
-COPY static static
 
-##Download the latest templates
-RUN apk add --update curl && rm -rf /var/cache/apk/*
-RUN apk --no-cache add jq
-RUN for k in $(curl -XGET localhost:8093/v1/asset/html | jq ".Data | .[]"); do curl -O views/_shared/$k localhost:8093/v1/asset/html/$k; done
+RUN mkdir -p /views/_shared
 
 EXPOSE 8081
 
-CMD [ "./cars"]
+ENTRYPOINT [ "./cars" ]

@@ -16,12 +16,12 @@ func NewCreateCtrl(ctrlMap *control.ControllerMap) *CreateController {
 }
 
 func (c *CreateController) Get() {
-	c.Setup("create")
+	c.Setup("create", "Create Car", false)
 }
 
 func (c *CreateController) GetStep() {
 	step := c.Ctx.Input.Param(":step")
-	c.Setup(step)
+	c.Setup(step, step, false)
 
 	c.Data["StepNo"] = step
 }

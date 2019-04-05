@@ -16,5 +16,5 @@ func NewHomeCtrl(ctrlMap *control.ControllerMap) *HomeController {
 }
 
 func (c *HomeController) Get() {
-	c.Setup("home")
+	c.Setup("home", "Cars", false)
 }
