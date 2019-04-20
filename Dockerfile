@@ -7,7 +7,7 @@ RUN go mod download
 
 COPY main.go .
 COPY controllers ./controllers
-COPY logic ./logic
+COPY core ./core
 COPY routers ./routers
 
 RUN CGO_ENABLED="0" go build
@@ -21,7 +21,7 @@ RUN mkdir -p assets/js
 COPY compiledart.sh .
 RUN sh ./compiledart.sh
 
-FROM scratch
+FROM alpine:latest
 
 COPY --from=builder /box/cars .
 COPY --from=pyltjie /arrow/assets/js dist/js
