@@ -1,0 +1,121 @@
+version: "3.7"
+
+services:
+  CarsDEV:
+      image: avosa/cars:dev
+      build: .
+      environment:
+        - RUNMODE=${RUNMODE}
+        - HOST=${HOST}
+      depends_on:
+        - RouterDEV
+        - FolioDEV
+        - ThemeDEV
+        - SecureDEV
+        - ArtifactDEV
+      networks:
+        - mango_net
+      ports:
+        - "8081:8081"
+      command: ["./wait-for-it.sh", "ThemeDEV:8093", "--", "python", "app.py"]
+
+  RouterDEV:
+    image: avosa/router:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8080:8080"
+    networks:
+        - mango_net
+
+  FolioDEV:
+    image: avosa/folio:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8090:8090"
+    networks:
+      - mango_net
+    volumes: 
+      - ../folio/db:/db
+    depends_on:
+        - RouterDEV
+    command: ["./wait-for-it.sh", "RouterDEV:8080", "--", "python", "app.py"]
+
+  ThemeDEV:
+    image: avosa/theme:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8093:8093"
+    networks:
+        - mango_net
+    depends_on:
+        - RouterDEV
+    command: ["./wait-for-it.sh", "RouterDEV:8080", "--", "python", "app.py"]
+
+  GateDEV:
+    image: avosa/gate:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - mango_net
+    depends_on:
+      - CarsDEV
+    volumes:
+      - ../gate/certs:/certs:ro
+    command: ["./wait-for-it.sh", "CarsDEV:8081", "--", "python", "app.py"]
+
+  AuthDEV:
+    image: avosa/auth:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8094:8094"
+    networks:
+      - "mango_net"
+    depends_on:
+      - "ThemeDEV"
+    command: ["./wait-for-it.sh", "ThemeDEV:8093", "--", "python", "app.py"]
+
+  SecureDEV:
+    image: avosa/secure:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8086:8086"
+    networks:
+      - "mango_net"
+    volumes: 
+      - ../secure/db:/db
+    depends_on:
+      - "AuthDEV"
+    command: ["./wait-for-it.sh", "AuthDEV:8094", "--", "python", "app.py"]
+
+  ArtifactDEV:
+    image: avosa/artifact:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - HOST=${HOST}
+    ports:
+      - "8082:8082"
+    networks:
+      - "mango_net"
+    volumes: 
+      - ../artifact/db:/db
+    depends_on:
+    - "RouterDEV"
+    command: ["./wait-for-it.sh", "RouterDEV:8080", "--", "python", "app.py"]
+
+networks:
+  mango_net:
+    driver: bridge
