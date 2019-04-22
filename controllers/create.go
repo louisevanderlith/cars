@@ -16,7 +16,8 @@ func NewCreateCtrl(ctrlMap *control.ControllerMap) *CreateController {
 }
 
 func (c *CreateController) Get() {
-	c.Setup("create", "Create Car", false)
+	c.Setup("step1", "Create Car", false)
+	c.Data["StepNo"] = "step1";
 }
 
 func (c *CreateController) GetStep() {

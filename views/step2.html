@@ -1,54 +1,93 @@
 {{template "create.html" .}} {{define "currStep"}}
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="#" class="pull-right"></a>
-                <h4>Vehicle Photos</h4>
-            </div>
-            <div class="panel-body">
-                <div class="list-group">
-                    <label>Front</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label>Back</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label>Left</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label>Righ</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label>Dashboard</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label>ODO Meter </label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <div class="list-group">
-                    <label> Interior</label>
-                    <input type="text" class="" name="txtMake" value="" readonly/>
-                    <input type="submit" class="" name="btnSubmit" value="Upload" />
-                </div>
-                <form name="frmPhotosUpload" action="/upload" method="POST">
-                    <div class="list-group">
-                        <input type="submit" class="" name="btnSave" value="Save" />
-                    </div>
-                </form>
+
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+            <p class="subtitle has-text-grey">Upload Photos</p>
+        <div class="field column is-4 is-offset-4">
+            <div class="file is-small is-boxed is-left">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Front
+                        </span>
+                    </span>
+                </label>
             </div>
         </div>
+
+        <div class="field">
+            <div class="file is-small is-boxed is-right">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Left
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="file is-small is-boxed">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Right
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Back
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Interior
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
     </div>
+</div>
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+        <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+    </div>
+</div>
+</div>
 </div>
 {{end}}

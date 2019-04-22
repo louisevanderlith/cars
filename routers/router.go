@@ -10,8 +10,12 @@ import (
 func Setup(s *mango.Service) {
 	ctrlmap := EnableFilter(s)
 
+	createCtrl := controllers.NewCreateCtrl(ctrlmap)
+
 	beego.Router("/", controllers.NewHomeCtrl(ctrlmap))
 	beego.Router("/profile", controllers.NewProfileCtrl(ctrlmap))
+	beego.Router("/create", createCtrl, "get:Get")
+	beego.Router("/create/:step", createCtrl, "get:GetStep")
 }
 
 func EnableFilter(s *mango.Service) *control.ControllerMap {
@@ -21,6 +25,8 @@ func EnableFilter(s *mango.Service) *control.ControllerMap {
 
 	ctrlmap.Add("/", emptyMap)
 	ctrlmap.Add("/profile", emptyMap)
+	ctrlmap.Add("/create", emptyMap)
+
 
 	beego.InsertFilter("/*", beego.BeforeRouter, ctrlmap.FilterUI)
 
