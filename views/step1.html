@@ -1,38 +1,24 @@
 {{template "create.html" .}} {{define "currStep"}}
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <a href="#" class="pull-right"></a>
-                <h4>Vehicle Details</h4>
-            </div>
-            <div class="panel-body">
-                <form name="frmVIN" action="/create" method="POST">
-                    <div class="list-group">
-                        <input type="text" class="" name="txtVIN" value="" placeholder="Vin Number" />
-                        <input type="submit" class="" name="btnSubmit" value="Submit" />
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+        <p class="subtitle has-text-grey">Please enter vin</p>
+        <div class="box">
+            <form role="form">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-mormal" id="txtIdentity" required minlength="17" type="text" placeholder="Vehicle vin" autofocus="" autocorrect="off" autocapitalize="off">
+                        <p class="help is-danger"></p>
                     </div>
-                </form>
-                <form name="frmDetails" action="/create" method="POST">
-                    <div class="list-group">
-                        <input type="text" class="" name="txtMake" value="" readonly/>
-                    </div>
-                    <div class="list-group">
-                        <input type="text" class="" name="txtCountry" value="" />
-                    </div>
-                    <div class="list-group">
-                        <input type="text" class="" name="txtModel" value="" />
-                    </div>
-                    <div class="list-group">
-                        <input type="text" class="" name="txtYear" value="" />
-                    </div>
-
-                    <div class="list-group ">
-                        <input type="submit" class="" name="btnSave" value="Save" />
-                    </div>
-                </form>
-            </div>
+                </div>
+                <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+            </form>
         </div>
+        <!--
+        <p class="has-text-grey">
+            <a href="/register">Register</a> &nbsp;·&nbsp;
+            <a href="/forgot">Forgot Password</a>
+        </p>
+    -->
     </div>
 </div>
 {{end}}
