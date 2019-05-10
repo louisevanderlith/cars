@@ -11,6 +11,8 @@ github.com/couchbase/go-couchbase v0.0.0-20181122212707-3e9b6e1258bb/go.mod h1:T
 github.com/couchbase/gomemcached v0.0.0-20181122193126-5125a94a666c/go.mod h1:srVSlQLB8iXBVXHgnqemxUXqN6FCvClgCMPCsjBDR7c=
 github.com/couchbase/goutils v0.0.0-20180530154633-e865a1461c8a/go.mod h1:BQwMFlJzDjFDG3DJUdU0KORxn88UlsOULuxLExMh3Hs=
 github.com/cupcake/rdb v0.0.0-20161107195141-43ba34106c76/go.mod h1:vYwsqCOLxGiisLwp9rITslkFNpZD5rz43tf41QFkTWY=
+github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
+github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/edsrzf/mmap-go v0.0.0-20170320065105-0bce6a688712/go.mod h1:YO35OhQPt3KJa3ryjFM5Bs14WD66h8eGKpfaBNrHW5M=
 github.com/elazarl/go-bindata-assetfs v1.0.0 h1:G/bYguwHIzWq9ZoyUQqrjTmJbbYn3j3CKKpKinvZLFk=
 github.com/elazarl/go-bindata-assetfs v1.0.0/go.mod h1:v+YaWX3bdea5J/mo8dSETolEo7R71Vk1u8bnjau5yw4=
@@ -29,6 +31,8 @@ github.com/louisevanderlith/husk v0.1.0/go.mod h1:FiREVNZW48kA++iCekTEqFLcpe1m31
 github.com/louisevanderlith/husk v0.1.1/go.mod h1:FiREVNZW48kA++iCekTEqFLcpe1m31+FQhd1ePm0YLA=
 github.com/louisevanderlith/husk v0.6.21 h1:FaQCIlsbGH3B2QVHgS6TrJxEr7xeMYTcpiLMAUwBIhQ=
 github.com/louisevanderlith/husk v0.6.21/go.mod h1:FiREVNZW48kA++iCekTEqFLcpe1m31+FQhd1ePm0YLA=
+github.com/louisevanderlith/husk v0.6.23 h1:Hw/K4UGoZbwfVb+w3LHXcRBUS2Mg+hvestydig+jqAU=
+github.com/louisevanderlith/husk v0.6.23/go.mod h1:FiREVNZW48kA++iCekTEqFLcpe1m31+FQhd1ePm0YLA=
 github.com/louisevanderlith/mango v0.2.22/go.mod h1:+9RvCkch8S6Tt+EV1pdAUCqh8r0jDdh0L+pYrX8QrcY=
 github.com/louisevanderlith/mango v0.2.23 h1:roQtG1bBx9haD2UyOeLFFweTcBocFW8eOKHN9B4117o=
 github.com/louisevanderlith/mango v0.2.23/go.mod h1:88iXs4x1wKFJ5tLHFsdtoztFejwWIqer18uY4JpWdMs=
@@ -39,6 +43,8 @@ github.com/louisevanderlith/mango v0.3.1 h1:ZaDYkr859Pykhv/eCuF8Hc3qyGvQYIBaMrqu
 github.com/louisevanderlith/mango v0.3.1/go.mod h1:FaXJhL2RYtrqL1ygoRUJU6tUvQzr8S331mK5lE1t9P4=
 github.com/louisevanderlith/mango v0.3.13 h1:Ust6D/7mequ53gWxuQBW0TN4OnGV/J642BHJFHrw6cc=
 github.com/louisevanderlith/mango v0.3.13/go.mod h1:08ZlxthQJDm3NWla/QIJ9Ja/LLNw/dbSLke6vmQ75FM=
+github.com/louisevanderlith/mango v0.3.36 h1:JdPe5FXJ5P96/0RrZQhk2u17eTE5eZuCIJKfpFqZTs4=
+github.com/louisevanderlith/mango v0.3.36/go.mod h1:r2JuqvWCgrcanfgL1V9l9aVEF24BOA8Jh2QDaakjJRM=
 github.com/louisevanderlith/secure v0.0.0-20190405144636-b7fb199bb689/go.mod h1:r8RUEvDA4onIU4FxTbJNVcszOquBhE7EgVA6iq7Ln98=
 github.com/louisevanderlith/secure v0.1.0 h1:y2hvNg0l3e6y3TJpj5Db+Bvrp5OCHLBTrtCGlgHD72U=
 github.com/louisevanderlith/secure v0.1.0/go.mod h1:M0cpImwBIehj7GqvN6WC1z3kiv98mjTiwngopuVvKHY=
