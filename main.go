@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"path"
 
 	_ "github.com/louisevanderlith/cars/core"
 	"github.com/louisevanderlith/mango"
@@ -15,8 +16,10 @@ import (
 func main() {
 	// Register with router
 	mode := os.Getenv("RUNMODE")
-	pubPath := os.Getenv("KEYPATH")
-	
+	keyPath := os.Getenv("KEYPATH")
+	pubName := os.Getenv("PUBLICKEY")
+	pubPath := path.Join(keyPath, pubName)
+
 	name := beego.BConfig.AppName
 
 	srv := mango.NewService(mode, name, pubPath, enums.APP)
