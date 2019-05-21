@@ -1,5 +1,6 @@
 # cars
 Mango Web: Cars
+Cars will act as the central platform for advertising vehicles.
 
 ## Run with Docker
 * $ docker build -t avosa/cars:dev .

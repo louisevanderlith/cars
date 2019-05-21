@@ -17,18 +17,20 @@ COPY routers ./routers
 RUN CGO_ENABLED="0" go build
 
 FROM google/dart AS pyltjie
+ENV PATH="$PATH:/root/.pub-cache/bin"
 
 WORKDIR /arrow
-COPY static/dart ./assets/dart
+COPY web ./web
+COPY pubspec.yaml pubspec.yaml
 
-RUN mkdir -p assets/js
-COPY compiledart.sh .
-RUN sh ./compiledart.sh
+RUN pub global activate webdev
+RUN pub get
+RUN webdev build
 
 FROM alpine:latest
 
 COPY --from=builder /box/cars .
-COPY --from=pyltjie /arrow/assets/js dist/js
+COPY --from=pyltjie /arrow/build*.dart.js dist/js/
 COPY conf conf
 COPY views views
 

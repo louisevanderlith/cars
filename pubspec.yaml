@@ -1,0 +1,10 @@
+name: Cars.APP
+version: 0.1.10
+description: Car selling application for mango services.
+author: Louise van der Lith
+repository: https://github.com/louisevanderlith/cars
+environment:
+  sdk: '>=2.0.0 < 3.0.0'
+dev_dependencies:
+  build_runner: '>=0.8.10 <2.0.0'
+  build_web_compilers: '>=0.3.6 <2.0.0'
