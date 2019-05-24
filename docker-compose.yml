@@ -77,9 +77,13 @@ services:
     environment:
       - RUNMODE=${RUNMODE}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - PRIVATEKEY=${PRIVATEKEY}
+=======
+      - KEYPATH=/db/sign_rsa.pub
+>>>>>>> Stashed changes
 =======
       - KEYPATH=/db/sign_rsa.pub
 >>>>>>> Stashed changes
@@ -97,6 +101,9 @@ services:
 =======
       - ../gate/certs:/certs:ro
       - ../secure/db/sign_rsa.pub:/db/sign_rsa.pub
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     command: ["./wait-for-it.sh", "CarsDEV:8081", "--", "python", "app.py"]
 
