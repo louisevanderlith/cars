@@ -1,6 +1,6 @@
 {{template "create.html" .}} {{define "currStep"}}
 <div class="container has-text-left">
-  <div class="column is-4 is-offset-4">
+  <form id="frmXtra" class="column is-4 is-offset-4">
     <label class="checkbox">
       <input type="checkbox">
       Canopy
@@ -123,9 +123,9 @@
       Powersteering
     </label>
     <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-    </form>
-  </div>
-  <!--<label class="checkbox">
+  </form>
+</div>
+<!--<label class="checkbox">
         <input type="checkbox">
         Tow Bar
       </label>
@@ -137,4 +137,4 @@
                 <input type="checkbox">
                 Sunroof
               </label>-->
-  {{end}}
+{{end}}

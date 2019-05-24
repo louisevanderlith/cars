@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:Cars.APP/formstate.dart';
-import 'package:Cars.APP/pathlookup.dart';
 import 'package:Cars.APP/vinapi.dart';
 
 class VINForm extends FormState {
