@@ -1,72 +1,105 @@
-{{template "create.html" .}} {{define "currStep"}}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-            <p class="subtitle has-text-grey">Upload Photos</p>
-        <div class="field column is-4 is-offset-4">
-            <div class="file is-small is-boxed is-left">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Front
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <!-- Bulma Version 0.7.4-->
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css" />
+  <link rel="stylesheet" type="text/css" href="../css/personal.css">
+  <script async type="text/javascript" src="../js/bulma.js"></script>
+</head>
 
-        <div class="field">
-            <div class="file is-small is-boxed is-right">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Left
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
+<body>
 
-        <div class="field">
-            <div class="file is-small is-boxed">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Right
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
-        <div class="field">
-            <div class="file is-small is-boxed">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Back
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
-        <div class="field">
-            <div class="file is-small is-boxed">
+
+  <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+              <p class="subtitle has-text-grey">Upload Photos</p>
+          <div class="field">
+              <div class="file is-small is-boxed is-block">
+                  <label class="file-label">
+                      <input class="file-input" type="file" name="resume">
+                      <span class="file-cta">
+                          <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                              Front
+                          </span>
+                      </span>
+                  </label>
+              </div>
+          </div>
+  
+          <div class="field">
+              <div class="file is-small is-boxed is-block">
+                  <label class="file-label">
+                      <input class="file-input" type="file" name="resume">
+                      <span class="file-cta">
+                          <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                              Left
+                          </span>
+                      </span>
+                  </label>
+              </div>
+          </div>
+  
+          <div class="field">
+              <div class="file is-small is-boxed is-block">
+                  <label class="file-label">
+                      <input class="file-input" type="file" name="resume">
+                      <span class="file-cta">
+                          <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                              Right
+                          </span>
+                      </span>
+                  </label>
+              </div>
+          </div>
+          <div class="field">
+              <div class="file is-small is-boxed is-block">
+                  <label class="file-label">
+                      <input class="file-input" type="file" name="resume">
+                      <span class="file-cta">
+                          <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                              Back
+                          </span>
+                      </span>
+                  </label>
+              </div>
+          </div>
+          <div class="field">
+              <div class="file is-small is-boxed is-block">
+                  <label class="file-label">
+                      <input class="file-input" type="file" name="resume">
+                      <span class="file-cta">
+                          <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                              Interior
+                          </span>
+                      </span>
+                  </label>
+              </div>
+          </div>
+          <div class="field">
+            <div class="file is-small is-boxed is-block">
                 <label class="file-label">
                     <input class="file-input" type="file" name="resume">
                     <span class="file-cta">
@@ -80,14 +113,32 @@
                 </label>
             </div>
         </div>
+        <div class="field">
+          <div class="file is-small is-boxed is-block">
+              <label class="file-label">
+                  <input class="file-input" type="file" name="resume">
+                  <span class="file-cta">
+                      <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                          Interior
+                      </span>
+                  </span>
+              </label>
+          </div>
+      </div>
+      
+      </div>
+  </div>
+</div>
+  <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+          <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+      </div>
+  </div>
+  </div>
+  </div>
+</body>
 
-    </div>
-</div>
-<div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-        <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-    </div>
-</div>
-</div>
-</div>
-{{end}}
+</html>
