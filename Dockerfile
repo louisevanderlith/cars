@@ -11,7 +11,6 @@ FROM build_base as builder
 
 COPY main.go .
 COPY controllers ./controllers
-COPY core ./core
 COPY logic ./logic
 COPY routers ./routers
 
