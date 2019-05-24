@@ -15,6 +15,7 @@ services:
         - ThemeDEV
         - SecureDEV
         - ArtifactDEV
+        - VINDEV
       networks:
         - mango_net
       volumes: 
@@ -140,6 +141,24 @@ services:
       - "mango_net"
     volumes: 
       - ../artifact/db:/db
+      - ../gate/certs:${KEYPATH}:ro
+    depends_on:
+    - "RouterDEV"
+    command: ["./wait-for-it.sh", "RouterDEV:8080", "--", "python", "app.py"]
+
+  VINDEV:
+    image: avosa/vin:dev
+    environment:
+      - RUNMODE=${RUNMODE}
+      - KEYPATH=${KEYPATH}
+      - PUBLICKEY=${PUBLICKEY}
+      - HOST=${HOST}
+    ports:
+      - "8095:8095"
+    networks:
+      - "mango_net"
+    volumes: 
+      - ../vin/db:/db
       - ../gate/certs:${KEYPATH}:ro
     depends_on:
     - "RouterDEV"
