@@ -23,7 +23,7 @@ class VINForm extends FormState {
     if (isFormValid()) {
       disableSubmit(true);
       print('Validating ${vin}');
-      var result = await lookupVIN(vin); //.then(onComplete);
+      var result = await lookupVIN(vin);
       onComplete(result);
     }
   }
