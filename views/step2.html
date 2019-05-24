@@ -35,18 +35,26 @@
         </div>
 
         <div class="field">
-            <div class="file is-small is-boxed is-block">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
+            <div class="control">
+                <label class="label" for="uplProfileImg">Profile image</label>
+                <div class="file">
+                    <label class="file-label">
+                        <input class="file-input" type="file" multiple="false" data-for="ad" data-name="Vehicle"
+                            data-id="" accept=".jpg, .jpeg, .png" id="uplFront"
+                            placeholder="Profile Image"  required />
+                        <p class="help is-danger"></p>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
                         </span>
-                        <span class="file-label">
-                            Right
-                        </span>
-                    </span>
-                </label>
+                </div>
+                <input type="image" id="uplProfileView" class='image is-hidden'
+                    src="" alt="profile image" />
+                <p class="help is-danger"></p>
             </div>
         </div>
         <div class="field">
