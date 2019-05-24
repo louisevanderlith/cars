@@ -6,6 +6,7 @@ import (
 	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/control"
 	secure "github.com/louisevanderlith/secure/core"
+	"github.com/louisevanderlith/secure/core/roletype"
 )
 
 func Setup(s *mango.Service) {
@@ -30,9 +31,10 @@ func EnableFilter(s *mango.Service) *control.ControllerMap {
 	ctrlmap := control.CreateControlMap(s)
 
 	emptyMap := make(secure.ActionMap)
-
 	ctrlmap.Add("/", emptyMap)
 	ctrlmap.Add("/profile", emptyMap)
+
+	emptyMap["GET"] = roletype.Owner
 	ctrlmap.Add("/create", emptyMap)
 
 

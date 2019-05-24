@@ -1,42 +1,140 @@
 {{template "create.html" .}} {{define "currStep"}}
-<div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-
-        <div class="box">
-            <p class="subtitle has-text-grey">Please enter your price</p>
-            <form role="form">
-                <div class="field">
-                    <div class="control">
-                        <input class="input is-mormal" id="txtIdentity" required minlength="4" type="text"
-                            placeholder="Price" autofocus="" autocorrect="off" autocapitalize="off">
-                        <p class="help is-danger"></p>
-                        <br>
-                        <p class="subtitle has-text-grey has-text-centered">Please enter your mileage</p>
-                        <form role="form">
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-mormal" id="txtIdentity" required minlength="2" type="text"
-                                        placeholder="Mileage (KM)" autofocus="" autocorrect="off" autocapitalize="off">
-                                    <p class="help is-danger"></p>
-                                </div>
-                                <br>
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    Original Natis available
-                                </label>
-                                <br>
-                                <br>
-                            </div>
-                    </div>
-                    <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-            </form>
-        </div>
-        <!--
-        <p class="has-text-grey">
-            <a href="/register">Register</a> &nbsp;·&nbsp;
-            <a href="/forgot">Forgot Password</a>
-        </p>
-    -->
-    </div>
+<div class="container has-text-left">
+  <form id="frmXtra" class="column is-4 is-offset-4">
+    <label class="checkbox">
+      <input type="checkbox">
+      Canopy
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Tonneau cover
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Securi-lid
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Bin lining/Rubberising
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Bullbar
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Nudgebar
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Side stepd/Rocksliders
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      ARB/Aftermarket Bumper
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Towbar
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Roofrack
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Inverter
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Lifted/Upgraded Suspension
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Aftermarket wheels/Mags
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Spotlights
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      LED Bar
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Steering Controls
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Satnav
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Xenon Headlights
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Cruise control
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Auto lights
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Auto Wipers
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Bluetooth
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Aftermarket radio
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Rearview camera
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Sunroof
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Smash & Grab
+    </label>
+    <label class="checkbox">
+      <input type="checkbox">
+      Upgraded Audio system
+    </label>
+    <br>
+    <label class="checkbox">
+      <input type="checkbox">
+      Powersteering
+    </label>
+    <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+  </form>
 </div>
+<!--<label class="checkbox">
+        <input type="checkbox">
+        Tow Bar
+      </label>
+      <label class="checkbox">
+            <input type="checkbox">
+            Aircon
+          </label>
+          <label class="checkbox">
+                <input type="checkbox">
+                Sunroof
+              </label>-->
 {{end}}

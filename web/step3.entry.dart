@@ -1,6 +1,6 @@
-import 'package:Cars.APP/xtraform.dart';
+import 'package:Cars.APP/uploadform.dart';
 
 void main(){
-  print('Step3 Running');
-  new XtraForm("#frmExtras", "input[type=checkbox]", "#btnNext");
+  print('Running Step2');
+  new UploadForm("#frmUpload", "#uplFront", "#uplLeft", "#uplRight", "#uplBack", "#uplInteriorA", "#uplInteriorB", "#uplInteriorC", "#btnNext");
 }

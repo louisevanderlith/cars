@@ -5,7 +5,6 @@ import (
 	"os"
 	"path"
 
-	_ "github.com/louisevanderlith/cars/core"
 	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/enums"
 

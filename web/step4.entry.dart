@@ -1,7 +1,6 @@
-import 'package:Cars.APP/priceform.dart';
+import 'package:Cars.APP/xtraform.dart';
 
-void main() {
-  print('Running Step4');
-  new PriceForm("#frmPrice", "#txtPrice", "#txtMileage", "#chkHasNatis",
-      "#chkCanFinance", "#btnNext");
+void main(){
+  print('Step3 Running');
+  new XtraForm("#frmExtras", "input[type=checkbox]", "#btnNext");
 }

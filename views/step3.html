@@ -1,140 +1,129 @@
 {{template "create.html" .}} {{define "currStep"}}
-<div class="container has-text-left">
-  <form id="frmXtra" class="column is-4 is-offset-4">
-    <label class="checkbox">
-      <input type="checkbox">
-      Canopy
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Tonneau cover
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Securi-lid
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bin lining/Rubberising
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bullbar
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Nudgebar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Side stepd/Rocksliders
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      ARB/Aftermarket Bumper
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Towbar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Roofrack
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Inverter
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Lifted/Upgraded Suspension
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Aftermarket wheels/Mags
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Spotlights
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      LED Bar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Steering Controls
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Satnav
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Xenon Headlights
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Cruise control
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Auto lights
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Auto Wipers
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bluetooth
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Aftermarket radio
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Rearview camera
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Sunroof
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Smash & Grab
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Upgraded Audio system
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Powersteering
-    </label>
-    <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-  </form>
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+        <p class="subtitle has-text-grey">Upload Photos</p>
+        <div class="field">
+            <div class="file is-small is-boxed is-block is-fullwidth">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Front
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="file is-small is-boxed is-block">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Left
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="label" for="uplProfileImg">Profile image</label>
+                <div class="file">
+                    <label class="file-label">
+                        <input class="file-input" type="file" multiple="false" data-for="ad" data-name="Vehicle"
+                            data-id="" accept=".jpg, .jpeg, .png" id="uplFront"
+                            placeholder="Profile Image"  required />
+                        <p class="help is-danger"></p>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                </div>
+                <input type="image" id="uplProfileView" class='image is-hidden'
+                    src="" alt="profile image" />
+                <p class="help is-danger"></p>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed is-block">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Back
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed is-block">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Interior
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed is-block">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Interior
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="file is-small is-boxed is-block">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Interior
+                        </span>
+                    </span>
+                </label>
+            </div>
+        </div>
+
+    </div>
 </div>
-<!--<label class="checkbox">
-        <input type="checkbox">
-        Tow Bar
-      </label>
-      <label class="checkbox">
-            <input type="checkbox">
-            Aircon
-          </label>
-          <label class="checkbox">
-                <input type="checkbox">
-                Sunroof
-              </label>-->
+</div>
+<div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+        <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+    </div>
+</div>
 {{end}}
