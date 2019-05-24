@@ -12,6 +12,7 @@ FROM build_base as builder
 COPY main.go .
 COPY controllers ./controllers
 COPY core ./core
+COPY logic ./logic
 COPY routers ./routers
 
 RUN CGO_ENABLED="0" go build
@@ -20,11 +21,13 @@ FROM google/dart AS pyltjie
 ENV PATH="$PATH:/root/.pub-cache/bin"
 
 WORKDIR /arrow
-COPY web ./web
 COPY pubspec.yaml pubspec.yaml
 
 RUN pub global activate webdev
 RUN pub get
+
+COPY web ./web
+COPY lib ./lib
 RUN webdev build
 
 FROM alpine:latest

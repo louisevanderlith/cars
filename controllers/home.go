@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/louisevanderlith/cars/logic"
 	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/control"
 )
@@ -19,4 +20,5 @@ func NewHomeCtrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *Ho
 
 func (c *HomeController) Get() {
 	c.Setup("home", "Cars", false)
+	c.CreateTopMenu(logic.GetMenu("/create"))
 }
