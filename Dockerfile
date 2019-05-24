@@ -30,7 +30,7 @@ RUN webdev build
 FROM alpine:latest
 
 COPY --from=builder /box/cars .
-COPY --from=pyltjie /arrow/build*.dart.js dist/js/
+COPY --from=pyltjie /arrow/build/*.dart.js dist/js/
 COPY conf conf
 COPY views views
 

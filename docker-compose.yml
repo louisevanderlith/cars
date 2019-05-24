@@ -76,9 +76,13 @@ services:
     image: avosa/gate:dev
     environment:
       - RUNMODE=${RUNMODE}
+<<<<<<< Updated upstream
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - PRIVATEKEY=${PRIVATEKEY}
+=======
+      - KEYPATH=/db/sign_rsa.pub
+>>>>>>> Stashed changes
       - HOST=${HOST}
     ports:
       - "80:80"
@@ -88,7 +92,12 @@ services:
     depends_on:
       - CarsDEV
     volumes:
+<<<<<<< Updated upstream
       - ../gate/certs:${KEYPATH}:ro
+=======
+      - ../gate/certs:/certs:ro
+      - ../secure/db/sign_rsa.pub:/db/sign_rsa.pub
+>>>>>>> Stashed changes
     command: ["./wait-for-it.sh", "CarsDEV:8081", "--", "python", "app.py"]
 
   AuthDEV:
