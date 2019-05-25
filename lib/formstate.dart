@@ -10,7 +10,6 @@ class FormState {
 
     disableSubmit(true);
 
-    //_form.onKeyUp.listen(pressEnter);
     _form.onInput.listen(validateElement);
   }
 

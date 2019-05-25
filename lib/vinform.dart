@@ -6,10 +6,12 @@ import 'package:Cars.APP/vinapi.dart';
 
 class VINForm extends FormState {
   TextInputElement _vin;
+  ParagraphElement _error;
 
   VINForm(String idElem, String vinElem, String submitBtn)
       : super(idElem, submitBtn) {
     _vin = querySelector(vinElem);
+    _error = querySelector("${idElem}Err");
 
     querySelector(submitBtn).onClick.listen(onSend);
   }
@@ -21,19 +23,18 @@ class VINForm extends FormState {
   void onSend(Event e) async {
     if (isFormValid()) {
       disableSubmit(true);
-      print('Validating ${vin}');
+
       var result = await lookupVIN(vin);
-      onComplete(result);
+      var obj = jsonDecode(result.response);
+      
+      if (result.status == 200) {
+        var data = obj['Data'];
+
+        window.localStorage['Step1'] = htmlEscape.convert(data.toString());
+        window.location.replace('/create/step2');
+      } else {
+        _error.text = obj['Error'];
+      }
     }
-  }
-
-  void onComplete(HttpRequest req) {
-    var obj = jsonDecode(req.response);
-    print(obj);
-
-    var data = obj['Data'];
-    print(data);
-    window.localStorage['Step1'] = htmlEscape.convert(data.toString());
-    window.location.replace('/create/step2');
   }
 }

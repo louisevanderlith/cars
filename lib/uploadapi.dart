@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
 import 'keys.dart';
@@ -5,19 +6,17 @@ import 'pathlookup.dart';
 
 String _imageURL;
 
-void createUpload(FormData data, Function callback) async {
+Future<HttpRequest> createUpload(FormData data, Function callback) async {
   var url = await buildPath('Artifact.API', 'upload', new List<String>());
-  
+  final compltr = new Completer<HttpRequest>();
   final request = HttpRequest();
   request.open("POST", url);
-  //request.withCredentials = true;
-  request.setRequestHeader("Authorization", "Bearer " + window.localStorage['avosession']);
-  request.onLoadEnd.listen((e) => requestComplete(request, callback));
+  request.setRequestHeader(
+      "Authorization", "Bearer " + window.localStorage['avosession']);
+  request.onLoadEnd.listen((e) => compltr.complete(request));
   request.send(data);
 
-  /*return HttpRequest.requestCrossOrigin(path, method: "POST", sendData: jsonEncode(data));
-  return HttpRequest.request(path,
-      method: 'POST', withCredentials: true, sendData: data);*/
+  return compltr.future;
 }
 
 void uploadFile(Event e) {
@@ -28,7 +27,11 @@ void uploadFile(Event e) {
     var forAttr = fileElem.dataset['for'];
     var nameAttr = fileElem.dataset['name'];
     var ctrlID = fileElem.id;
-    var infoObj = {"For": forAttr, "ItemName": nameAttr, "ItemKey": getObjKey()};
+    var infoObj = {
+      "For": forAttr,
+      "ItemName": nameAttr,
+      "ItemKey": getObjKey()
+    };
 
     if (files.length > 0) {
       File firstFile = files[0];
