@@ -1,130 +1,172 @@
 {{template "create.html" .}} {{define "currStep"}}
-<div class="container has-text-left">
-  <form id="frmXtra" class="column is-4 is-offset-4">
-    <label class="checkbox">
-      <input type="checkbox">
-      Canopy
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Tonneau cover
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Securi-lid
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bin lining/Rubberising
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bullbar
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Nudgebar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Side stepd/Rocksliders
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      ARB/Aftermarket Bumper
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Towbar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Roofrack
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Inverter
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Lifted/Upgraded Suspension
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Aftermarket wheels/Mags
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Spotlights
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      LED Bar
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Steering Controls
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Satnav
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Xenon Headlights
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Cruise control
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Auto lights
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Auto Wipers
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Bluetooth
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Aftermarket radio
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Rearview camera
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Sunroof
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Smash & Grab
-    </label>
-    <label class="checkbox">
-      <input type="checkbox">
-      Upgraded Audio system
-    </label>
-    <br>
-    <label class="checkbox">
-      <input type="checkbox">
-      Powersteering
-    </label>
-    <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-  </form>
-</div>
+<body>
+  <section class="hero is-primary">
+      <div class="hero-body">
+          <div class="container">
+              <p class="title">Vehicle extras</p>
+              <p class="subtitle">Please select all extras that are equipped on your vehicle</p>
+          </div>
+      </div>
+  </section>
+
+  <div class="demo">
+
+      <h1 id="responsive">Vehicle extra's</h1>
+      <p></p>
+      <br>
+      <table class="table is-responsive table is-bordered is-striped is-fullwidth">
+          <thead>
+              <tr>
+                  <th colspan="2">Interior</th>
+                  <th colspan="2">Exterior</th>
+                  <th colspan="2">Bakkie/Suv</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                      <td>
+                              <div class="has-text-left">
+                                  <form id="frmXtra">
+                                      <label class="checkbox">
+                                          <input type="checkbox">
+                                          Leather seats
+                                      </label>
+                                      <div class="has-text-left">
+                                          <form id="frmXtra">
+                                              <label class="checkbox">
+                                                  <input type="checkbox">
+                                                  Steering controls
+                                              </label>
+                                      </div>
+                                      <div class="has-text-left">
+                                              <form id="frmXtra">
+                                                  <label class="checkbox">
+                                                      <input type="checkbox">
+                                                      Virtual Cockpit
+                                                  </label>
+          
+                                          </div>
+                          </td>
+                          <td>
+                              <div class="has-text-left">
+                                  <form id="frmXtra">
+                                      <label class="checkbox">
+                                          <input type="checkbox">
+                                          Electric Windows
+                                      </label>
+                                      <div class="has-text-left">
+                                          <form id="frmXtra">
+                                              <label class="checkbox">
+                                                  <input type="checkbox">
+                                                  Satnav
+                                              </label>
+      
+                                      </div>
+                                      <div class="has-text-left">
+                                              <form id="frmXtra">
+                                                  <label class="checkbox">
+                                                      <input type="checkbox">
+                                                      Aircon
+                                                  </label>
+          
+                                          </div>
+                          </td>
+      
+                  <td>
+                          <div class="has-text-left">
+                              <form id="frmXtra">
+                                  <label class="checkbox">
+                                      <input type="checkbox">
+                                      Mags
+                                  </label>
+                                  <div class="has-text-left">
+                                      <form id="frmXtra">
+                                          <label class="checkbox">
+                                              <input type="checkbox">
+                                              Smash & Grab
+                                          </label>
+  
+                                  </div>
+                                  <div class="has-text-left">
+                                          <form id="frmXtra">
+                                              <label class="checkbox">
+                                                  <input type="checkbox">
+                                                  Metallic Paint
+                                              </label>
+      
+                                      </div>
+                      </td>
+                      <td>
+                          <div class="has-text-left">
+                              <form id="frmXtra">
+                                  <label class="checkbox">
+                                      <input type="checkbox">
+                                      Sunroof
+                                  </label>
+                                  <div class="has-text-left">
+                                      <form id="frmXtra">
+                                          <label class="checkbox">
+                                              <input type="checkbox">
+                                              Towbar
+                                          </label>
+  
+                                  </div>
+                      </td>
+  
+                  <td>
+                      <div class="has-text-left">
+                          <form id="frmXtra">
+                              <label class="checkbox">
+                                  <input type="checkbox">
+                                  Canopy
+                              </label>
+                              <div class="has-text-left">
+                                  <form id="frmXtra">
+                                      <label class="checkbox">
+                                          <input type="checkbox">
+                                          Tonneau cover
+                                      </label>
+                                  </div>
+                                  <div class="has-text-left">
+                                          <form id="frmXtra">
+                                              <label class="checkbox">
+                                                  <input type="checkbox">
+                                                  Securi-lid
+                                              </label>
+                                          </div>
+                                      
+                  </td>
+                  <td>
+                      <div class="has-text-left">
+                          <form id="frmXtra">
+                              <label class="checkbox">
+                                  <input type="checkbox">
+                                  Upgraded Suspension
+                              </label>
+                              <div class="has-text-left">
+                                  <form id="frmXtra">
+                                      <label class="checkbox">
+                                          <input type="checkbox">
+                                          Winch
+                                      </label>
+
+                              </div>
+                              <div class="has-text-left">
+                                      <form id="frmXtra">
+                                          <label class="checkbox">
+                                              <input type="checkbox">
+                                              Rollbar
+                                          </label>
+                                      </div>
+                                  
+                  </td>
+
+              </tr>
+
+          </tbody>
+      </table>
+
+  </div>
 <!--<label class="checkbox">
         <input type="checkbox">
         Tow Bar
