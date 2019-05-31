@@ -3,8 +3,8 @@ import 'dart:html';
 
 import 'package:Cars.APP/pathlookup.dart';
 
-Future<HttpRequest> lookupVIN(String vin) async {
-  final url = await buildPath("VIN.API", "lookup", [vin]);
+Future<HttpRequest> validateVIN(String vin) async {
+  final url = await buildPath("VIN.API", "validate", [vin]);
   
   final compltr = new Completer<HttpRequest>();
   final request = HttpRequest();
@@ -23,3 +23,4 @@ void onProgress(ProgressEvent e) {
     print('Progress... ${e.total}/${e.loaded}');
   }
 }
+

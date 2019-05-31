@@ -1,59 +1,28 @@
 {{template "create.html" .}} {{define "currStep"}}
-<section class="hero is-primary">
-    <div class="hero-body">
-      <div class="container">
-        <p class="title">Vehicle details</p>
-        <p class="subtitle">Please confirm that the information mentioned below is correct.</p>
-      </div>
+<div class="container has-text-centered">
+  <div class="column is-4 is-offset-4">
+    <p class="subtitle has-text-grey">Please confirm that the information mentioned below is correct</p>
+    <div class="box">
+      <form role="form" id="frmStep2">
+        <div class="field">
+          <h1>{{.Data.Unique}}</h1>
+          <p>Your car is #{{.Data.Serial}}</p>
+          <br>
+          <table class="table is-responsive is-striped is-bordered">
+            <tbody>
+              {{range $key, $val := .Data.WMInfo}}
+              <tr>
+                <td>{{$key}}</td>
+                <td>{{$val}}</td>
+              </tr>
+              {{end}}
+            </tbody>
+          </table>
+        </div>
+        <button id="btnNext" class="button is-block is-success is-normal is-fullwidth">Next</button>
+        <p id="frmStep2Err" class="help is-danger"></p>
+      </form>
     </div>
-  </section>
-  
-  <div class="demo">
-  
-    <h1>{Vehicle make??}</h1>
-    <p>Vehicle variant</p>
-    <br>
-    <table class="table is-responsive is-striped is-bordered">
-      <thead>
-        <tr>
-          <th>???????</th>
-          <th>Description</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Engine:</td>
-          <td>3 silinder pappa</td>
-          
-        </tr>
-        <tr>
-          <td>Drivetrain:</td>
-          <td>Sommer links</td>
-          
-        </tr>
-        <tr>
-          <td>Veligheids gordel:</td>
-          <td>n Swart lang een</td>
-          
-        </tr>
-        <tr>
-          <td>Deure:</td>
-          <td>3</td>
-          
-        </tr>
-        <tr>
-          <td>Blah:</td>
-          <td>Sedan</td>
-          
-        </tr>
-        <tr>
-          <td>Colour:</td>
-          <td>Lekker groen</td>
-          
-        </tr>
-      </tbody>
-    </table>
-  
   </div>
-  {{end}}
+</div>
+{{end}}

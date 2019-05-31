@@ -24,14 +24,16 @@ class VINForm extends FormState {
     if (isFormValid()) {
       disableSubmit(true);
 
-      var result = await lookupVIN(vin);
+      var result = await validateVIN(vin);
       var obj = jsonDecode(result.response);
-      
+
       if (result.status == 200) {
         var data = obj['Data'];
-
-        window.localStorage['Step1'] = htmlEscape.convert(data.toString());
-        window.location.replace('/create/step2');
+        print(data);
+        if (data) {
+          //window.localStorage['Step1'] = htmlEscape.convert(data.toString());
+          window.location.replace('/create/step2/${vin}');
+        }
       } else {
         _error.text = obj['Error'];
       }

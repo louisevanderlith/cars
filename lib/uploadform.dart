@@ -54,11 +54,9 @@ class UploadForm extends FormState {
 
   void onComplete(HttpRequest req) {
     var obj = jsonDecode(req.response);
-    print(obj);
 
     var data = obj['Data'];
-    print(data);
-    window.localStorage['Step1'] = htmlEscape.convert(data.toString());
+    window.localStorage['Step1'] = data.toString();//htmlEscape.convert(data.toString());
     window.location.replace('/create/step2');
   }
 }
