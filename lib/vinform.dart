@@ -31,7 +31,6 @@ class VINForm extends FormState {
         var data = obj['Data'];
         print(data);
         if (data) {
-          //window.localStorage['Step1'] = htmlEscape.convert(data.toString());
           window.location.replace('/create/step2/${vin}');
         }
       } else {

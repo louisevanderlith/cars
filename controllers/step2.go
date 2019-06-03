@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"errors"
+	"log"
 
 	"github.com/louisevanderlith/mango"
 	"github.com/louisevanderlith/mango/control"
@@ -23,7 +24,7 @@ func NewStep2Ctrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *S
 // /:vin
 func (req *Step2Controller) Get() {
 	req.Setup("step2", "Validate VIN", true)
-	req.Data["StepNo"] = "2"
+	req.Data["StepNo"] = 2
 
 	vin := req.Ctx.Input.Param(":vin")
 
@@ -36,6 +37,7 @@ func (req *Step2Controller) Get() {
 	_, err := mango.DoGET(req.GetMyToken(), &result, req.GetInstanceID(), "VIN.API", "lookup", vin)
 
 	if err != nil {
+		log.Println(err)
 		req.Serve(nil, err)
 		return
 	}

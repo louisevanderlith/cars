@@ -5,19 +5,39 @@
     <div class="box">
       <form role="form" id="frmStep2">
         <div class="field">
-          <h1>{{.Data.Unique}}</h1>
-          <p>Your car is #{{.Data.Serial}}</p>
-          <br>
-          <table class="table is-responsive is-striped is-bordered">
-            <tbody>
-              {{range $key, $val := .Data.WMInfo}}
-              <tr>
-                <td>{{$key}}</td>
-                <td>{{$val}}</td>
-              </tr>
-              {{end}}
-            </tbody>
-          </table>
+          <div class="control">
+            <h1>VIN {{.Data.V.Full}}</h1>
+            <p>Serial: #{{.Data.V.Serial}}</p>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input type="hidden" id="hdnVIN" value="{{.Data.V.Full}}" />
+            <input type="hidden" id="hdnVINKey" value="{{.Data.K}}" />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <table class="table is-responsive is-striped is-bordered">
+              <tbody>
+                {{range $key, $val := .Data.V.WMInfo}}
+                <tr>
+                  <td>{{$key}}</td>
+                  <td>{{$val}}</td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input id="chkValid" type="checkbox" required value="" />
+              This information is correct
+              <p class="help is-danger"></p>
+            </label>
+          </div>
         </div>
         <button id="btnNext" class="button is-block is-success is-normal is-fullwidth">Next</button>
         <p id="frmStep2Err" class="help is-danger"></p>

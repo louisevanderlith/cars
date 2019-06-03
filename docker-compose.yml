@@ -5,7 +5,6 @@ services:
       image: avosa/cars:dev
       build: .
       environment:
-        - RUNMODE=${RUNMODE}
         - KEYPATH=${KEYPATH}
         - PUBLICKEY=${PUBLICKEY}
         - HOST=${HOST}
@@ -16,6 +15,8 @@ services:
         - SecureDEV
         - ArtifactDEV
         - VINDEV
+        - AdminDEV
+        - VehicleDEV
       networks:
         - mango_net
       volumes: 
@@ -27,7 +28,6 @@ services:
   RouterDEV:
     image: avosa/router:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -41,7 +41,6 @@ services:
   FolioDEV:
     image: avosa/folio:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -59,7 +58,6 @@ services:
   ThemeDEV:
     image: avosa/theme:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -76,7 +74,6 @@ services:
   GateDEV:
     image: avosa/gate:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - PRIVATEKEY=${PRIVATEKEY}
@@ -95,7 +92,6 @@ services:
   AuthDEV:
     image: avosa/auth:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -109,10 +105,25 @@ services:
       - "ThemeDEV"
     command: ["./wait-for-it.sh", "ThemeDEV:8093", "--", "python", "app.py"]
 
+  AdminDEV:
+    image: avosa/admin:dev
+    environment:
+      - KEYPATH=${KEYPATH}
+      - PUBLICKEY=${PUBLICKEY}
+      - HOST=${HOST}
+    volumes: 
+      - ../gate/certs:${KEYPATH}:ro
+    ports:
+      - "8088:8088"
+    networks:
+      - "mango_net"
+    depends_on:
+      - "ThemeDEV"
+    command: ["./wait-for-it.sh", "ThemeDEV:8093", "--", "python", "app.py"]
+
   SecureDEV:
     image: avosa/secure:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - PRIVATEKEY=${PRIVATEKEY}
@@ -131,7 +142,6 @@ services:
   ArtifactDEV:
     image: avosa/artifact:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -149,7 +159,6 @@ services:
   VINDEV:
     image: avosa/vin:dev
     environment:
-      - RUNMODE=${RUNMODE}
       - KEYPATH=${KEYPATH}
       - PUBLICKEY=${PUBLICKEY}
       - HOST=${HOST}
@@ -159,6 +168,23 @@ services:
       - "mango_net"
     volumes: 
       - ../vin/db:/db
+      - ../gate/certs:${KEYPATH}:ro
+    depends_on:
+    - "RouterDEV"
+    command: ["./wait-for-it.sh", "RouterDEV:8080", "--", "python", "app.py"]
+
+  VehicleDEV:
+    image: avosa/vehicle:dev
+    environment:
+      - KEYPATH=${KEYPATH}
+      - PUBLICKEY=${PUBLICKEY}
+      - HOST=${HOST}
+    ports:
+      - "8098:8098"
+    networks:
+      - "mango_net"
+    volumes: 
+      - ../vehicle/db:/db
       - ../gate/certs:${KEYPATH}:ro
     depends_on:
     - "RouterDEV"

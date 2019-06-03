@@ -26,6 +26,7 @@ func Setup(s *mango.Service) {
 	beego.Router("/create", createCtrl, "get:Get")
 
 	beego.Router("/create/step2/:vin", controllers.NewStep2Ctrl(ctrlmap, theme), "get:Get")
+	beego.Router("/create/step3/:vehicleKey", controllers.NewStep3Ctrl(ctrlmap, theme), "get:Get")
 	//beego.Router("/create/:step", createCtrl, "get:GetStep")
 }
 

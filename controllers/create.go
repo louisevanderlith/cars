@@ -19,7 +19,7 @@ func NewCreateCtrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *
 
 func (req *CreateController) Get() {
 	req.Setup("step1", "Create Car", true)
-	req.Data["StepNo"] = "1"
+	req.Data["StepNo"] = 1
 }
 
 /*
