@@ -38,7 +38,7 @@ func EnableFilter(s *mango.Service) *control.ControllerMap {
 	ctrlmap.Add("/profile", emptyMap)
 
 	ownMap := make(secure.ActionMap)
-	emptyMap["GET"] = roletype.Owner
+	ownMap["GET"] = roletype.Owner
 	ctrlmap.Add("/create", ownMap)
 
 	beego.InsertFilter("/*", beego.BeforeRouter, ctrlmap.FilterUI)
