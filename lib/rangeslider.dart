@@ -26,7 +26,7 @@ class RangeSlider {
   }
 
   void onMinChange(Event e) {
-    final almost = maximum - 5;
+    final almost = maximum - 500;
     if (minimum > almost) {
       _min.value = almost.toString();
     }
@@ -35,8 +35,8 @@ class RangeSlider {
   }
 
   void onMaxChange(Event e) {
-    if (maximum - 5 < minimum) {
-      var almost = minimum + 5;
+    if (maximum - 500 < minimum) {
+      var almost = minimum + 500;
       _max.value = almost.toString();
     }
 
