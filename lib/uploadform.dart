@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:Cars.APP/formstate.dart';
-import 'package:Cars.APP/uploadapi.dart';
+import 'package:mango_ui/formstate.dart';
+import 'package:mango_ui/services/uploadapi.dart';
 
 class UploadForm extends FormState {
   FileUploadInputElement _front;

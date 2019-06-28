@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:Cars.APP/formstate.dart';
+import 'package:mango_ui/formstate.dart';
 
 class XtraForm extends FormState {
   ElementList<CheckboxInputElement> _extras;

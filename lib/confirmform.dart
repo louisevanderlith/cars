@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'package:Cars.APP/formstate.dart';
-import 'package:Cars.APP/vehicleapi.dart';
+import 'package:mango_ui/formstate.dart';
+import 'package:mango_ui/services/vehicleapi.dart';
 
 class ConfirmForm extends FormState {
   HiddenInputElement _vinKey;
@@ -11,7 +11,8 @@ class ConfirmForm extends FormState {
 
   ParagraphElement _error;
 
-  ConfirmForm(String idElem, String vinKeyElem,String vinElem, String acceptElem, String submitBtn)
+  ConfirmForm(String idElem, String vinKeyElem, String vinElem,
+      String acceptElem, String submitBtn)
       : super(idElem, submitBtn) {
     _vinKey = querySelector(vinKeyElem);
     _vin = querySelector(vinElem);
@@ -53,7 +54,6 @@ class ConfirmForm extends FormState {
     }
   }
 }
-
 
 /*
 VINKey    husk.Key
