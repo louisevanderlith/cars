@@ -20,5 +20,5 @@ func NewHomeCtrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *Ho
 
 func (c *HomeController) Get() {
 	c.Setup("home", "Cars", true)
-	c.CreateTopMenu(logic.GetMenu("/create"))
+	c.CreateTopMenu(c.Ctx, logic.GetMenu("/create"))
 }
