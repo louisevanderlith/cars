@@ -1,15 +1,13 @@
 package logic
 
-import (
-	"github.com/louisevanderlith/mango/control"
-)
+import "github.com/louisevanderlith/droxolite/bodies"
 
-func GetMenu(path string) *control.Menu {
+func GetMenu(path string) *bodies.Menu {
 	return getItems(path)
 }
 
-func getItems(path string) *control.Menu {
-	result := control.NewMenu(path)
+func getItems(path string) *bodies.Menu {
+	result := bodies.NewMenu(path)
 
 	result.AddItem("/create", "Upload your Car", "fa-arrow-up", nil)
 

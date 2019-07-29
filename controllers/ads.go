@@ -1,34 +1,36 @@
 package controllers
 
 import (
-	"github.com/louisevanderlith/mango"
-	"github.com/louisevanderlith/mango/control"
+	"log"
+	"net/http"
+
+	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/xontrols"
 )
 
 type AdsController struct {
-	control.UIController
-}
-
-func NewAdsCtrl(ctrlMap *control.ControllerMap, settings mango.ThemeSetting) *AdsController {
-	result := &AdsController{}
-	result.SetTheme(settings)
-	result.SetInstanceMap(ctrlMap)
-
-	return result
+	xontrols.UICtrl
 }
 
 func (c *AdsController) Get() {
 	c.Setup("ads", "For Sale", false)
 
 	result := []interface{}{}
-	pagesize := c.Ctx.Input.Param(":pagesize")
+	pagesize := c.FindParam("pagesize")
 
-	_, err := mango.DoGET(c.GetMyToken(), &result, c.GetInstanceID(), "Stock.API", "car", "all", pagesize)
+	code, err := droxolite.DoGET(c.GetMyToken(), &result, c.Settings.InstanceID, "Stock.API", "car", "all", pagesize)
 
-	c.Serve(result, err)
+	if err != nil {
+		log.Println(err)
+		c.Serve(code, err, nil)
+		return
+	}
+
+	c.Serve(http.StatusOK, nil, result)
 }
 
 func (c *AdsController) GetView() {
 	c.Setup("adView", "View Ad", true)
 
+	c.Serve(http.StatusOK, nil, nil)
 }

@@ -1,16 +1,18 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/louisevanderlith/cars/controllers"
-	"github.com/louisevanderlith/mango"
-	"github.com/louisevanderlith/mango/control"
-	secure "github.com/louisevanderlith/secure/core"
-	"github.com/louisevanderlith/secure/core/roletype"
+	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/roletype"
 )
 
-func Setup(s *mango.Service) {
-	ctrlmap := EnableFilter(s)
+func Setup(e *droxolite.Epoxy) {
+	//Home
+	homeCtrl := &controllers.HomeController{}
+	homeGroup := droxolite.NewRouteGroup("", homeCtrl)
+	homeGroup.AddRoute("/", "GET", roletype.Unknown, homeCtrl.Get)
+	e.AddGroup(homeGroup)
+	/*ctrlmap := EnableFilter(s)
 
 	siteName := beego.AppConfig.String("defaultsite")
 	theme, err := mango.GetDefaultTheme(ctrlmap.GetInstanceID(), siteName)
@@ -28,8 +30,10 @@ func Setup(s *mango.Service) {
 	beego.Router("/create/step2/:vin", controllers.NewStep2Ctrl(ctrlmap, theme), "get:Get")
 	beego.Router("/create/step3/:vehicleKey", controllers.NewStep3Ctrl(ctrlmap, theme), "get:Get")
 	//beego.Router("/create/:step", createCtrl, "get:GetStep")
+	*/
 }
 
+/*
 func EnableFilter(s *mango.Service) *control.ControllerMap {
 	ctrlmap := control.CreateControlMap(s)
 
@@ -45,3 +49,4 @@ func EnableFilter(s *mango.Service) *control.ControllerMap {
 
 	return ctrlmap
 }
+*/

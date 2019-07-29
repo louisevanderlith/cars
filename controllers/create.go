@@ -1,20 +1,9 @@
 package controllers
 
-import (
-	"github.com/louisevanderlith/mango"
-	"github.com/louisevanderlith/mango/control"
-)
+import "github.com/louisevanderlith/droxolite/xontrols"
 
 type CreateController struct {
-	control.UIController
-}
-
-func NewCreateCtrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *CreateController {
-	result := &CreateController{}
-	result.SetTheme(setting)
-	result.SetInstanceMap(ctrlMap)
-
-	return result
+	xontrols.UICtrl
 }
 
 func (req *CreateController) Get() {

@@ -1,20 +1,9 @@
 package controllers
 
-import (
-	"github.com/louisevanderlith/mango/control"
-	"github.com/louisevanderlith/mango"
-)
+import "github.com/louisevanderlith/droxolite/xontrols"
 
 type ProfileController struct {
-	control.UIController
-}
-
-func NewProfileCtrl(ctrlMap *control.ControllerMap, settings mango.ThemeSetting) *ProfileController {
-	result := &ProfileController{}
-	result.SetTheme(settings)
-	result.SetInstanceMap(ctrlMap)
-
-	return result
+	xontrols.UICtrl
 }
 
 func (c *ProfileController) Get() {
