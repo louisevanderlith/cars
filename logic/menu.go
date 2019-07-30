@@ -2,12 +2,12 @@ package logic
 
 import "github.com/louisevanderlith/droxolite/bodies"
 
-func GetMenu(path string) *bodies.Menu {
-	return getItems(path)
+func GetMenu() *bodies.Menu {
+	return getItems()
 }
 
-func getItems(path string) *bodies.Menu {
-	result := bodies.NewMenu(path)
+func getItems() *bodies.Menu {
+	result := bodies.NewMenu()
 
 	result.AddItem("/create", "Upload your Car", "fa-arrow-up", nil)
 

@@ -11,5 +11,5 @@ type HomeController struct {
 
 func (c *HomeController) Get() {
 	c.Setup("home", "Cars", true)
-	c.CreateTopMenu(logic.GetMenu("/create"))
+	c.CreateTopMenu(logic.GetMenu())
 }
