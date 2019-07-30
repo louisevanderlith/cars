@@ -1,7 +1,10 @@
-<div class="section">
-    <canvas id="cvsPrice">
+<div class="container">
+    <div class="hero" is-overlay is-marginless>
+        <canvas id="cvsPrice" style="border:1px solid teal;">
 
-    </canvas>
+        </canvas>
+    </div>
+    <div class="hero">
         <div class="rangeslider">
             <!--Slider-->
             <input id="minPrice" name="rangePrice" type="range" min="10000" max="3000000" step="500" value="10000" />
@@ -10,10 +13,11 @@
             <span id="minPriceVal" class="range_min light left has-text-weight-bold">10000</span>
             <span id="maxPriceVal" class="range_max light right has-text-weight-bold">2800000</span>
         </div>
+    </div>
 </div>
 
 <div class="section">
-    <div class="box">
+    <div class="container">
         <div class="field has-addons">
             <div class="control is-expanded">
                 <input class="input has-text-centered" type="search" placeholder="find your dream car">
@@ -37,23 +41,24 @@
                 <div class="content">
                     <div class="content">
                         <div class="mapouter">
-                            <div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas"
-                                    src="https://maps.google.com/maps?q=&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <div class="google-map"><iframe
+                                    src="https://www.google.com.qa/maps/d/embed?mid=14RDx6FbM0-eZLkAd0-A5garwJBJRZLhs"
+                                    width="640" height="480"></iframe>
                             </div>
                             <style>
-                                .mapouter {
+                                .google-map {
                                     position: relative;
-                                    text-align: right;
-                                    height: 500px;
-                                    width: 600px;
+                                    padding-bottom: 75%;
+                                    height: 0;
+                                    overflow: hidden;
                                 }
 
-                                .gmap_canvas {
-                                    overflow: hidden;
-                                    background: none !important;
-                                    height: 500px;
-                                    width: 600px;
+                                .google-map iframe {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100% !important;
+                                    height: 100% !important;
                                 }
                             </style>
                         </div>
