@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"path"
 
@@ -20,7 +19,7 @@ func main() {
 	conf, err := droxolite.LoadConfig()
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	// Register with router
@@ -29,27 +28,27 @@ func main() {
 	err = srv.Register()
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	err = droxolite.UpdateTheme(srv.ID)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	theme, err := droxolite.GetDefaultTheme(host, srv.ID, profile)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
-	poxy := droxolite.NewColourEpoxy(srv, theme)
+	poxy := droxolite.NewColourEpoxy(srv, theme, "master.html")
 	routers.Setup(poxy)
 
 	err = poxy.Boot()
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
