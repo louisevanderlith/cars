@@ -10,7 +10,7 @@ func Setup(e *droxolite.Epoxy) {
 	//Home
 	homeCtrl := &controllers.HomeController{}
 	homeGroup := droxolite.NewRouteGroup("", homeCtrl)
-	homeGroup.AddRoute("/", "GET", roletype.Unknown, homeCtrl.Get)
+	homeGroup.AddRoute("Default", "/", "GET", roletype.Unknown, homeCtrl.Get)
 	e.AddGroup(homeGroup)
 	/*ctrlmap := EnableFilter(s)
 
