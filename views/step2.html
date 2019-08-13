@@ -1,93 +1,48 @@
 {{template "create.html" .}} {{define "currStep"}}
-
 <div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-            <p class="subtitle has-text-grey">Upload Photos</p>
-        <div class="field column is-4 is-offset-4">
-            <div class="file is-small is-boxed is-left">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Front
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
-
+  <div class="column is-4 is-offset-4">
+    <p class="subtitle has-text-grey">Please confirm that the information mentioned below is correct</p>
+    <div class="box">
+      <form role="form" id="frmStep2">
         <div class="field">
-            <div class="file is-small is-boxed is-right">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Left
-                        </span>
-                    </span>
-                </label>
-            </div>
-        </div>
-
-        <div class="field">
-            <div class="file is-small is-boxed">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Right
-                        </span>
-                    </span>
-                </label>
-            </div>
+          <div class="control">
+            <h1>VIN {{.Data.V.Full}}</h1>
+            <p>Serial: #{{.Data.V.Serial}}</p>
+          </div>
         </div>
         <div class="field">
-            <div class="file is-small is-boxed">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Back
-                        </span>
-                    </span>
-                </label>
-            </div>
+          <div class="control">
+            <input type="hidden" id="hdnVIN" value="{{.Data.V.Full}}" />
+            <input type="hidden" id="hdnVINKey" value="{{.Data.K}}" />
+          </div>
         </div>
         <div class="field">
-            <div class="file is-small is-boxed">
-                <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
-                    <span class="file-cta">
-                        <span class="file-icon">
-                            <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                            Interior
-                        </span>
-                    </span>
-                </label>
-            </div>
+          <div class="control">
+            <table class="table is-responsive is-striped is-bordered">
+              <tbody>
+                {{range $key, $val := .Data.V.WMInfo}}
+                <tr>
+                  <td>{{$key}}</td>
+                  <td>{{$val}}</td>
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
         </div>
-
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input id="chkValid" type="checkbox" required value="" />
+              This information is correct
+              <p class="help is-danger"></p>
+            </label>
+          </div>
+        </div>
+        <button id="btnNext" class="button is-block is-success is-normal is-fullwidth">Next</button>
+        <p id="frmStep2Err" class="help is-danger"></p>
+      </form>
     </div>
-</div>
-<div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-        <button class="button is-block is-success is-normal is-fullwidth">Next</button>
-    </div>
-</div>
-</div>
+  </div>
 </div>
 {{end}}

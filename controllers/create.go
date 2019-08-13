@@ -1,33 +1,23 @@
 package controllers
 
-import (
-	"github.com/louisevanderlith/mango"
-	"github.com/louisevanderlith/mango/control"
-)
+import "github.com/louisevanderlith/droxolite/xontrols"
 
 type CreateController struct {
-	control.UIController
+	xontrols.UICtrl
 }
 
-func NewCreateCtrl(ctrlMap *control.ControllerMap, setting mango.ThemeSetting) *CreateController {
-	result := &CreateController{}
-	result.SetTheme(setting)
-	result.SetInstanceMap(ctrlMap)
-
-	return result
+func (req *CreateController) Get() {
+	req.Setup("step1", "Create Car", true)
+	req.Data["StepNo"] = 1
 }
 
-func (c *CreateController) Get() {
-	c.Setup("step1", "Create Car", false)
-	c.Data["StepNo"] = "step1";
-}
-
+/*
 func (c *CreateController) GetStep() {
 	step := c.Ctx.Input.Param(":step")
-	c.Setup(step, step, false)
+	c.Setup(step, step, true)
 
 	c.Data["StepNo"] = step
-}
+}*/
 
 // POST must start ad upload and verification
 func (c *CreateController) Post() {

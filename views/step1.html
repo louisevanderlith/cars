@@ -3,22 +3,18 @@
     <div class="column is-4 is-offset-4">
         <p class="subtitle has-text-grey">Please enter vin</p>
         <div class="box">
-            <form role="form">
+            <form role="form" id="frmStep1">
                 <div class="field">
                     <div class="control">
-                        <input class="input is-mormal" id="txtIdentity" required minlength="17" type="text" placeholder="Vehicle vin" autofocus="" autocorrect="off" autocapitalize="off">
+                        <input class="input is-mormal" id="txtNumber" required minlength="17" type="text"
+                            placeholder="Vehicle vin" autofocus="" autocorrect="off" autocapitalize="off">
                         <p class="help is-danger"></p>
                     </div>
                 </div>
-                <button class="button is-block is-success is-normal is-fullwidth">Next</button>
+                <button id="btnNext" class="button is-block is-success is-normal is-fullwidth">Next</button>
+                <p id="frmStep1Err" class="help is-danger"></p>
             </form>
         </div>
-        <!--
-        <p class="has-text-grey">
-            <a href="/register">Register</a> &nbsp;·&nbsp;
-            <a href="/forgot">Forgot Password</a>
-        </p>
-    -->
     </div>
 </div>
 {{end}}
