@@ -6,6 +6,8 @@ import (
 
 	"github.com/louisevanderlith/cars/routers"
 	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/bodies"
+	"github.com/louisevanderlith/droxolite/resins"
 	"github.com/louisevanderlith/droxolite/servicetype"
 )
 
@@ -23,9 +25,15 @@ func main() {
 	}
 
 	// Register with router
-	srv := droxolite.NewService(conf.Appname, pubPath, conf.HTTPPort, servicetype.APP)
+	srv := bodies.NewService(conf.Appname, pubPath, conf.HTTPPort, servicetype.APP)
 
-	err = srv.Register()
+	routr, err := droxolite.GetServiceURL("", "Router.API", false)
+
+	if err != nil {
+		panic(err)
+	}
+
+	err = srv.Register(routr)
 
 	if err != nil {
 		panic(err)
@@ -43,10 +51,16 @@ func main() {
 		panic(err)
 	}
 
-	poxy := droxolite.NewColourEpoxy(srv, theme, "master.html")
+	secur, err := droxolite.GetServiceURL(srv.ID, "Auth.APP", true)
+
+	if err != nil {
+		panic(err)
+	}
+
+	poxy := resins.NewColourEpoxy(srv, theme, "master.html", secur)
 	routers.Setup(poxy)
 
-	err = poxy.Boot()
+	err = droxolite.Boot(poxy)
 
 	if err != nil {
 		panic(err)

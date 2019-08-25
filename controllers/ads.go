@@ -5,32 +5,30 @@ import (
 	"net/http"
 
 	"github.com/louisevanderlith/droxolite"
-	"github.com/louisevanderlith/droxolite/xontrols"
+	"github.com/louisevanderlith/droxolite/context"
 )
 
-type AdsController struct {
-	xontrols.UICtrl
+type Ads struct {
 }
 
-func (c *AdsController) Get() {
-	c.Setup("ads", "For Sale", false)
+func (c *Ads) Default(ctx context.Contexer) (int, interface{}) {
+	//c.Setup("ads", "For Sale", false)
 
 	result := []interface{}{}
-	pagesize := c.FindParam("pagesize")
+	pagesize := ctx.FindParam("pagesize")
 
-	code, err := droxolite.DoGET(c.GetMyToken(), &result, c.Settings.InstanceID, "Stock.API", "car", "all", pagesize)
+	code, err := droxolite.DoGET(ctx.GetMyToken(), &result, ctx.GetInstanceID(), "Stock.API", "car", "all", pagesize)
 
 	if err != nil {
 		log.Println(err)
-		c.Serve(code, err, nil)
-		return
+		return code, err
 	}
 
-	c.Serve(http.StatusOK, nil, result)
+	return http.StatusOK, result
 }
 
-func (c *AdsController) GetView() {
-	c.Setup("adView", "View Ad", true)
+func (c *Ads) View(ctx context.Contexer) (int, interface{}) {
+	//c.Setup("adView", "View Ad", true)
 
-	c.Serve(http.StatusOK, nil, nil)
+	return http.StatusOK, nil
 }

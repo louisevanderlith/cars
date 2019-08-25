@@ -1,14 +1,19 @@
 package controllers
 
-import "github.com/louisevanderlith/droxolite/xontrols"
+import (
+	"net/http"
+
+	"github.com/louisevanderlith/droxolite/context"
+)
 
 type CreateController struct {
-	xontrols.UICtrl
 }
 
-func (req *CreateController) Get() {
-	req.Setup("step1", "Create Car", true)
-	req.Data["StepNo"] = 1
+func (req *CreateController) Get(ctx context.Contexer) (int, interface{}) {
+	//req.Setup("step1", "Create Car", true)
+	//req.Data["StepNo"] = 1
+
+	return http.StatusOK, nil
 }
 
 /*
@@ -20,11 +25,13 @@ func (c *CreateController) GetStep() {
 }*/
 
 // POST must start ad upload and verification
-func (c *CreateController) Post() {
+func (c *CreateController) Post(ctx context.Contexer) (int, interface{}) {
 
 	// Verify VIN
 	// Upload Photos
 	// Confirm Vehicle Match
 	// Do something with tag...
 	// Save Object
+
+	return http.StatusOK, nil
 }

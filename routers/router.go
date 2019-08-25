@@ -2,15 +2,14 @@ package routers
 
 import (
 	"github.com/louisevanderlith/cars/controllers"
-	"github.com/louisevanderlith/droxolite"
+	"github.com/louisevanderlith/droxolite/resins"
 	"github.com/louisevanderlith/droxolite/roletype"
+	"github.com/louisevanderlith/droxolite/routing"
 )
 
-func Setup(e *droxolite.Epoxy) {
+func Setup(e resins.Epoxi) {
 	//Home
-	homeCtrl := &controllers.HomeController{}
-	homeGroup := droxolite.NewRouteGroup("", homeCtrl)
-	homeGroup.AddRoute("Default", "/", "GET", roletype.Unknown, homeCtrl.Get)
+	homeGroup := routing.NewInterfaceBundle("Home", roletype.Admin, &controllers.Home{})
 	e.AddGroup(homeGroup)
 	/*ctrlmap := EnableFilter(s)
 

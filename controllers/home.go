@@ -1,15 +1,17 @@
 package controllers
 
 import (
-	"github.com/louisevanderlith/cars/logic"
-	"github.com/louisevanderlith/droxolite/xontrols"
+	"net/http"
+
+	"github.com/louisevanderlith/droxolite/context"
 )
 
-type HomeController struct {
-	xontrols.UICtrl
+type Home struct {
 }
 
-func (c *HomeController) Get() {
-	c.Setup("home", "Cars", true)
-	c.CreateTopMenu(logic.GetMenu())
+func (c *Home) Default(ctx context.Contexer) (int, interface{}) {
+	//c.Setup("home", "Cars", true)
+	//c.CreateTopMenu(logic.GetMenu())
+
+	return http.StatusOK, nil
 }

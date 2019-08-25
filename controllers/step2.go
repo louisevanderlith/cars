@@ -6,34 +6,31 @@ import (
 	"net/http"
 
 	"github.com/louisevanderlith/droxolite"
-	"github.com/louisevanderlith/droxolite/xontrols"
+	"github.com/louisevanderlith/droxolite/context"
 )
 
 //Step2Controllers is used to view and confirm VIN details.
 type Step2Controller struct {
-	xontrols.UICtrl
 }
 
 // /:vin
-func (req *Step2Controller) Get() {
-	req.Setup("step2", "Validate VIN", true)
-	req.Data["StepNo"] = 2
+func (req *Step2Controller) Get(ctx context.Contexer) (int, interface{}) {
+	//req.Setup("step2", "Validate VIN", true)
+	//req.Data["StepNo"] = 2
 
-	vin := req.FindParam("vin")
+	vin := ctx.FindParam("vin")
 
 	if len(vin) < 15 {
-		req.Serve(http.StatusBadRequest, nil, errors.New("vin is too short man"))
-		return
+		return http.StatusBadRequest, errors.New("vin is too short man")
 	}
 
 	result := make(map[string]interface{})
-	code, err := droxolite.DoGET(req.GetMyToken(), &result, req.Settings.InstanceID, "VIN.API", "lookup", vin)
+	code, err := droxolite.DoGET(ctx.GetMyToken(), &result, ctx.GetInstanceID(), "VIN.API", "lookup", vin)
 
 	if err != nil {
 		log.Println(err)
-		req.Serve(code, err, nil)
-		return
+		return code, err
 	}
 
-	req.Serve(http.StatusOK, nil, result)
+	return http.StatusOK, result
 }

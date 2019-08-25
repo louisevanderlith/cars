@@ -1,11 +1,15 @@
 package controllers
 
-import "github.com/louisevanderlith/droxolite/xontrols"
+import (
+	"net/http"
+
+	"github.com/louisevanderlith/droxolite/context"
+)
 
 type ProfileController struct {
-	xontrols.UICtrl
 }
 
-func (c *ProfileController) Get() {
-	c.Setup("profile", "Profile", false)
+func (c *ProfileController) Get(ctx context.Contexer) (int, interface{}) {
+	//.Setup("profile", "Profile", false)
+	return http.StatusOK, nil
 }
