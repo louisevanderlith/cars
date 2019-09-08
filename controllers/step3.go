@@ -12,7 +12,7 @@ type Step3Controller struct {
 }
 
 // /:vehicleKey
-func (req *Step3Controller) Get(ctx context.Contexer) (int, interface{}) {
+func (req *Step3Controller) Get(ctx context.Requester) (int, interface{}) {
 	//req.Setup("step3", "Upload Images", true)
 	//req.Data["StepNo"] = 3
 

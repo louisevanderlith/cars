@@ -1,16 +1,13 @@
 package routers
 
 import (
-	"github.com/louisevanderlith/cars/controllers"
 	"github.com/louisevanderlith/droxolite/resins"
-	"github.com/louisevanderlith/droxolite/roletype"
-	"github.com/louisevanderlith/droxolite/routing"
 )
 
 func Setup(e resins.Epoxi) {
 	//Home
-	homeGroup := routing.NewInterfaceBundle("Home", roletype.Admin, &controllers.Home{})
-	e.AddGroup(homeGroup)
+	//homeGroup := routing.NewInterfaceBundle("Home", roletype.Admin, &controllers.Home{})
+	//e.AddBundle(homeGroup)
 	/*ctrlmap := EnableFilter(s)
 
 	siteName := beego.AppConfig.String("defaultsite")
@@ -31,21 +28,3 @@ func Setup(e resins.Epoxi) {
 	//beego.Router("/create/:step", createCtrl, "get:GetStep")
 	*/
 }
-
-/*
-func EnableFilter(s *mango.Service) *control.ControllerMap {
-	ctrlmap := control.CreateControlMap(s)
-
-	emptyMap := make(secure.ActionMap)
-	ctrlmap.Add("/", emptyMap)
-	ctrlmap.Add("/profile", emptyMap)
-
-	ownMap := make(secure.ActionMap)
-	ownMap["GET"] = roletype.Owner
-	ctrlmap.Add("/create", ownMap)
-
-	beego.InsertFilter("/*", beego.BeforeRouter, ctrlmap.FilterUI)
-
-	return ctrlmap
-}
-*/

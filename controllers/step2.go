@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/louisevanderlith/droxolite"
 	"github.com/louisevanderlith/droxolite/context"
+	"github.com/louisevanderlith/droxolite/do"
 )
 
 //Step2Controllers is used to view and confirm VIN details.
@@ -14,7 +14,7 @@ type Step2Controller struct {
 }
 
 // /:vin
-func (req *Step2Controller) Get(ctx context.Contexer) (int, interface{}) {
+func (req *Step2Controller) Get(ctx context.Requester) (int, interface{}) {
 	//req.Setup("step2", "Validate VIN", true)
 	//req.Data["StepNo"] = 2
 
@@ -25,7 +25,7 @@ func (req *Step2Controller) Get(ctx context.Contexer) (int, interface{}) {
 	}
 
 	result := make(map[string]interface{})
-	code, err := droxolite.DoGET(ctx.GetMyToken(), &result, ctx.GetInstanceID(), "VIN.API", "lookup", vin)
+	code, err := do.GET(ctx.GetMyToken(), &result, ctx.GetInstanceID(), "VIN.API", "lookup", vin)
 
 	if err != nil {
 		log.Println(err)

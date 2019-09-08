@@ -6,10 +6,10 @@ import (
 	"github.com/louisevanderlith/droxolite/context"
 )
 
-type CreateController struct {
+type Create struct {
 }
 
-func (req *CreateController) Get(ctx context.Contexer) (int, interface{}) {
+func (req *Create) Get(ctx context.Requester) (int, interface{}) {
 	//req.Setup("step1", "Create Car", true)
 	//req.Data["StepNo"] = 1
 
@@ -24,8 +24,12 @@ func (c *CreateController) GetStep() {
 	c.Data["StepNo"] = step
 }*/
 
+func (x *Create) Search(ctx context.Requester) (int, interface{}) {
+	return http.StatusMethodNotAllowed, nil
+}
+
 // POST must start ad upload and verification
-func (c *CreateController) Post(ctx context.Contexer) (int, interface{}) {
+func (c *Create) Create(ctx context.Requester) (int, interface{}) {
 
 	// Verify VIN
 	// Upload Photos

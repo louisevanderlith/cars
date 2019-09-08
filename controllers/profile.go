@@ -9,7 +9,7 @@ import (
 type ProfileController struct {
 }
 
-func (c *ProfileController) Get(ctx context.Contexer) (int, interface{}) {
+func (c *ProfileController) Get(ctx context.Requester) (int, interface{}) {
 	//.Setup("profile", "Profile", false)
 	return http.StatusOK, nil
 }
