@@ -22,6 +22,7 @@ ENV PATH="$PATH:/root/.pub-cache/bin"
 WORKDIR /arrow
 RUN pub global activate webdev
 
+COPY build.yaml build.yaml
 COPY pubspec.yaml pubspec.yaml
 RUN pub get
 
