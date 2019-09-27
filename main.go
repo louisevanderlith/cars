@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path"
+	"strconv"
 
 	"github.com/louisevanderlith/cars/controllers"
 	"github.com/louisevanderlith/cars/routers"
@@ -19,16 +20,12 @@ func main() {
 	pubName := os.Getenv("PUBLICKEY")
 	host := os.Getenv("HOST")
 	profile := os.Getenv("PROFILE")
+	httpport, _ := strconv.Atoi(os.Getenv("HTTPPORT"))
+	appName := os.Getenv("APPNAME")
 	pubPath := path.Join(keyPath, pubName)
 
-	conf, err := droxolite.LoadConfig()
-
-	if err != nil {
-		panic(err)
-	}
-
 	// Register with router
-	srv := bodies.NewService(conf.Appname, pubPath, conf.HTTPPort, servicetype.APP)
+	srv := bodies.NewService(appName, profile, pubPath, host, httpport, servicetype.APP)
 
 	routr, err := do.GetServiceURL("", "Router.API", false)
 
