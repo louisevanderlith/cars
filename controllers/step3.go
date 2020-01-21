@@ -12,11 +12,11 @@ type Step3Controller struct {
 }
 
 // /:vehicleKey
-func (req *Step3Controller) Get(ctx context.Requester) (int, interface{}) {
+func (req *Step3Controller) Get(c *gin.Context) {
 	//req.Setup("step3", "Upload Images", true)
 	//req.Data["StepNo"] = 3
 
-	vehicleKey, err := husk.ParseKey(ctx.FindParam("vehicleKey"))
+	vehicleKey, err := husk.ParseKey(c.Param("vehicleKey"))
 
 	if err != nil {
 		return http.StatusBadRequest, err

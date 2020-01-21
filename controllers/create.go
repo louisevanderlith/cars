@@ -9,7 +9,7 @@ import (
 type Create struct {
 }
 
-func (req *Create) Get(ctx context.Requester) (int, interface{}) {
+func (req *Create) Get(c *gin.Context) {
 	//req.Setup("step1", "Create Car", true)
 	//req.Data["StepNo"] = 1
 
@@ -24,12 +24,12 @@ func (c *CreateController) GetStep() {
 	c.Data["StepNo"] = step
 }*/
 
-func (x *Create) Search(ctx context.Requester) (int, interface{}) {
+func (x *Create) Search(c *gin.Context) {
 	return http.StatusMethodNotAllowed, nil
 }
 
 // POST must start ad upload and verification
-func (c *Create) Create(ctx context.Requester) (int, interface{}) {
+func (c *Create) Create(c *gin.Context) {
 
 	// Verify VIN
 	// Upload Photos

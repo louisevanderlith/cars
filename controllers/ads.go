@@ -11,9 +11,9 @@ import (
 type Ads struct {
 }
 
-func (c *Ads) Get(ctx context.Requester) (int, interface{}) {
+func (c *Ads) Get(c *gin.Context) {
 	result := []interface{}{}
-	pagesize := ctx.FindParam("pagesize")
+	pagesize := c.Param("pagesize")
 
 	code, err := do.GET(ctx.GetMyToken(), &result, ctx.GetInstanceID(), "Stock.API", "car", pagesize)
 
@@ -25,7 +25,7 @@ func (c *Ads) Get(ctx context.Requester) (int, interface{}) {
 	return http.StatusOK, result
 }
 
-func (c *Ads) View(ctx context.Requester) (int, interface{}) {
+func (c *Ads) View(c *gin.Context) {
 	//c.Setup("adView", "View Ad", true)
 
 	return http.StatusOK, nil

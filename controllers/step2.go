@@ -14,11 +14,11 @@ type Step2Controller struct {
 }
 
 // /:vin
-func (req *Step2Controller) Get(ctx context.Requester) (int, interface{}) {
+func (req *Step2Controller) Get(c *gin.Context) {
 	//req.Setup("step2", "Validate VIN", true)
 	//req.Data["StepNo"] = 2
 
-	vin := ctx.FindParam("vin")
+	vin := c.Param("vin")
 
 	if len(vin) < 15 {
 		return http.StatusBadRequest, errors.New("vin is too short man")
