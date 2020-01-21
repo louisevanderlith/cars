@@ -1,7 +1,8 @@
 import 'dart:html';
-import 'package:charts_common/src/chart/line/line_renderer.dart';
+
 import 'package:charts_common/src/chart/common/processed_series.dart'
     show MutableSeries, ImmutableSeries;
+import 'package:charts_common/src/chart/line/line_renderer.dart';
 import 'package:charts_common/src/common/color.dart';
 import 'package:charts_common/src/common/material_palette.dart'
     show MaterialPalette;

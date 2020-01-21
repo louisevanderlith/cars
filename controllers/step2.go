@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/louisevanderlith/droxolite/context"
 	"github.com/louisevanderlith/droxolite/do"
 )
 
