@@ -5,16 +5,13 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-
-	"github.com/louisevanderlith/droxolite/context"
 )
 
 func GetProfile(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Profile", "./views/profile.html")
+	pge := mix.PreparePage("Profile", tmpl, "./views/profile.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
 
-		err := ctx.Serve(http.StatusOK, pge.Page(nil, ctx.GetTokenInfo(), ctx.GetToken()))
+		err := mix.Write(w, pge.Create(r, nil))
 
 		if err != nil {
 			log.Println(err)

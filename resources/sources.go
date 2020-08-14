@@ -3,25 +3,25 @@ package resources
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/louisevanderlith/droxolite/context"
+	"github.com/louisevanderlith/droxolite/drx"
 	"net/http"
 	"strings"
 )
 
 type Source struct {
 	client *http.Client
-	ctx    context.Contexer
+	req    *http.Request
 }
 
-func APIResource(clnt *http.Client, ctx context.Contexer) *Source {
+func APIResource(clnt *http.Client, r *http.Request) *Source {
 	return &Source{
 		client: clnt,
-		ctx:    ctx,
+		req:    r,
 	}
 }
 
 func (src *Source) get(api, path string, params ...string) (interface{}, error) {
-	tkninfo := src.ctx.GetTokenInfo()
+	tkninfo := drx.GetIdentity(src.req)
 	url, err := tkninfo.GetResourceURL(api)
 
 	if err != nil {
@@ -31,7 +31,7 @@ func (src *Source) get(api, path string, params ...string) (interface{}, error) 
 	fullURL := fmt.Sprintf("%s/%s/%s", url, path, strings.Trim(strings.Join(params, "/"), "/"))
 
 	req, err := http.NewRequest(http.MethodGet, fullURL, nil)
-	req.Header.Set("Authorization", "Bearer "+src.ctx.GetToken())
+	req.Header.Set("Authorization", "Bearer "+drx.GetToken(src.req))
 
 	if err != nil {
 		return nil, err

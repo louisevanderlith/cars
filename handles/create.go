@@ -2,21 +2,19 @@ package handles
 
 import (
 	"github.com/louisevanderlith/cars/resources"
+	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk"
 	"html/template"
 	"log"
 	"net/http"
-
-	"github.com/louisevanderlith/droxolite/context"
 )
 
 func GetCreation(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Create", "./views/create.html")
+	pge := mix.PreparePage("Create", tmpl, "./views/create.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
 
-		err := ctx.Serve(http.StatusOK, pge.Page(nil, ctx.GetTokenInfo(), ctx.GetToken()))
+		err := mix.Write(w, pge.Create(r, nil))
 
 		if err != nil {
 			log.Println(err)
@@ -26,17 +24,16 @@ func GetCreation(tmpl *template.Template) http.HandlerFunc {
 
 // /:vin
 func GetStep2(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Step2", "./views/step2.html")
+	pge := mix.PreparePage("Step2", tmpl, "./views/step2.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
-		vin := ctx.FindParam("vin")
+		vin := drx.FindParam(r, "vin")
 
 		if len(vin) < 15 {
 			http.Error(w, "vin is too short", http.StatusBadRequest)
 			return
 		}
 
-		src := resources.APIResource(http.DefaultClient, ctx)
+		src := resources.APIResource(http.DefaultClient, r)
 		result, err := src.LookupVIN(vin)
 
 		if err != nil {
@@ -45,7 +42,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = ctx.Serve(http.StatusOK, pge.Page(result, ctx.GetTokenInfo(), ctx.GetToken()))
+		err = mix.Write(w, pge.Create(r, result))
 
 		if err != nil {
 			log.Println(err)
@@ -54,10 +51,9 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 }
 
 func GetStep3(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Step3", "./views/step3.html")
+	pge := mix.PreparePage("Step3", tmpl, "./views/step3.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
-		vehicleKey, err := husk.ParseKey(ctx.FindParam("vehicleKey"))
+		vehicleKey, err := husk.ParseKey(drx.FindParam(r, "vehicleKey"))
 
 		if err != nil {
 			log.Println(err)
@@ -65,7 +61,7 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = ctx.Serve(http.StatusOK, pge.Page(vehicleKey, ctx.GetTokenInfo(), ctx.GetToken()))
+		err = mix.Write(w, pge.Create(r, vehicleKey))
 
 		if err != nil {
 			log.Println(err)

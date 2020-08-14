@@ -2,22 +2,20 @@ package handles
 
 import (
 	"github.com/louisevanderlith/cars/resources"
+	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk"
 	"html/template"
 	"log"
 	"net/http"
-
-	"github.com/louisevanderlith/droxolite/context"
 )
 
 func GetAds(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Ads", "./views/ads.html")
+	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
 
-		src := resources.APIResource(http.DefaultClient, ctx)
+		src := resources.APIResource(http.DefaultClient, r)
 		result, err := src.FetchStockCars("A10")
 
 		if err != nil {
@@ -32,7 +30,7 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = ctx.Serve(http.StatusOK, pge.Page(result, ctx.GetTokenInfo(), ctx.GetToken()))
+		err = mix.Write(w, pge.Create(r, result))
 
 		if err != nil {
 			log.Println(err)
@@ -41,12 +39,11 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 }
 
 func SearchAds(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Ads", "./views/ads.html")
+	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
-		pagesize := ctx.FindParam("pagesize")
+		pagesize := drx.FindParam(r, "pagesize")
 
-		src := resources.APIResource(http.DefaultClient, ctx)
+		src := resources.APIResource(http.DefaultClient, r)
 
 		result, err := src.FetchStockCars(pagesize)
 
@@ -56,7 +53,7 @@ func SearchAds(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = ctx.Serve(http.StatusOK, pge.Page(result, ctx.GetTokenInfo(), ctx.GetToken()))
+		err = mix.Write(w, pge.Create(r, result))
 
 		if err != nil {
 			log.Println(err)
@@ -65,11 +62,10 @@ func SearchAds(tmpl *template.Template) http.HandlerFunc {
 }
 
 func ViewAd(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage(tmpl, "Ads", "./views/ads.html")
+	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := context.New(w, r)
 
-		key, err := husk.ParseKey(ctx.FindParam("key"))
+		key, err := husk.ParseKey(drx.FindParam(r, "key"))
 
 		if err != nil {
 			log.Println(err)
@@ -77,7 +73,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		src := resources.APIResource(http.DefaultClient, ctx)
+		src := resources.APIResource(http.DefaultClient, r)
 		result, err := src.FetchStockCar(key.String())
 
 		if err != nil {
@@ -86,7 +82,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = ctx.Serve(http.StatusOK, pge.Page(result, ctx.GetTokenInfo(), ctx.GetToken()))
+		err = mix.Write(w, pge.Create(r, result))
 
 		if err != nil {
 			log.Println(err)
