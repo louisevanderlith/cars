@@ -10,4 +10,7 @@ dev_dependencies:
   build_web_compilers:
 dependencies:
   mango_ui: '^1.0.3'
-  charts_common: '>=0.6.0'
+  mango_vin: '^1.0.0'
+  mango_vehicle: '^1.0.0'
+  mango_artifact: '^1.0.0'
+  modern_charts: '^0.1.19'

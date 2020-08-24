@@ -5,7 +5,8 @@ import 'package:mango_ui/formstate.dart';
 class XtraForm extends FormState {
   ElementList<CheckboxInputElement> _extras;
 
-  XtraForm(String idElem, String chkExtra, String submitBtn) :super(idElem, submitBtn){
+  XtraForm(String idElem, String chkExtra, String submitBtn)
+      : super(idElem, submitBtn) {
     _extras = querySelectorAll(chkExtra);
 
     querySelector(submitBtn).onClick.listen(onSend);
@@ -14,14 +15,14 @@ class XtraForm extends FormState {
   List<String> get extras {
     var result = new List<String>();
 
-    for(var xtra in _extras){
+    for (var xtra in _extras) {
       result.add(xtra.value);
     }
 
     return result;
   }
 
-  void onSend(Event e){
+  void onSend(Event e) {
     if (isFormValid()) {
       disableSubmit(true);
       window.localStorage['Step3'] = extras.toString();

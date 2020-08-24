@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:mango_artifact/uploadapi.dart';
 import 'package:mango_ui/formstate.dart';
-import 'package:mango_ui/services/uploadapi.dart';
 
 class UploadForm extends FormState {
   FileUploadInputElement _front;
@@ -56,7 +56,8 @@ class UploadForm extends FormState {
     var obj = jsonDecode(req.response);
 
     var data = obj['Data'];
-    window.localStorage['Step1'] = data.toString();//htmlEscape.convert(data.toString());
+    window.localStorage['Step1'] =
+        data.toString(); //htmlEscape.convert(data.toString());
     window.location.replace('/create/step2');
   }
 }

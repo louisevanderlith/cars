@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:mango_ui/formstate.dart';
-import 'package:mango_ui/services/vinapi.dart';
+import 'package:mango_vin/vinapi.dart';
 
 class VINForm extends FormState {
   TextInputElement _vin;

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:mango_ui/formstate.dart';
-import 'package:mango_ui/services/vehicleapi.dart';
+import 'package:mango_vehicle/vehicleapi.dart';
 
 class ConfirmForm extends FormState {
   HiddenInputElement _vinKey;
