@@ -12,5 +12,5 @@ dependencies:
   mango_ui: '^1.0.3'
   mango_vin: '^1.0.0'
   mango_vehicle: '^1.0.7'
-  mango_artifact: '^1.0.0'
+  mango_artifact: '^1.0.1'
   modern_charts: '^0.1.19'
