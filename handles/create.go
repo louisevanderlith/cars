@@ -10,11 +10,16 @@ import (
 	"net/http"
 )
 
+type Step struct {
+	StepNo int
+	Info   interface{}
+}
+
 func GetCreation(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Create", tmpl, "./views/create.html")
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		err := mix.Write(w, pge.Create(r, nil))
+		err := mix.Write(w, pge.Create(r, Step{StepNo: 1}))
 
 		if err != nil {
 			log.Println(err)
@@ -42,7 +47,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, result))
+		err = mix.Write(w, pge.Create(r, Step{StepNo: 2, Info: result}))
 
 		if err != nil {
 			log.Println(err)
@@ -61,10 +66,10 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, vehicleKey))
+		err = mix.Write(w, pge.Create(r, Step{StepNo: 3, Info: vehicleKey}))
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Serve Error", err)
 		}
 	}
 }
