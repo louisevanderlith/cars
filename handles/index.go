@@ -14,7 +14,7 @@ func Index(tmpl *template.Template) http.HandlerFunc {
 		err := mix.Write(w, pge.Create(r, nil))
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Serve Error", err)
 		}
 	}
 }
