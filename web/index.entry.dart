@@ -5,11 +5,14 @@ import 'package:modern_charts/modern_charts.dart';
 void main() {
   new RangeSlider("#minPrice", "#maxPrice");
 
-  var table = DataTable([
-    ['Cars', 'Total'],
-    ['Toyota', 25],
-    ['Honda', 75],
-    ['BMW', 40]
+   var table = DataTable([
+    ['Make', 'Percentage'],
+    ['Toyota', 40],
+    ['Ford', 20],
+    ['Honda', 10],
+    ['Isuzu', 10],
+    ['Subaru', 10],
+    ['Fiat', 10]
   ]);
   new PriceChart("#grphPrice", table);
 }
