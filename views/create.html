@@ -3,26 +3,27 @@
 <section class="hero">
     <div class="container">
         <div class="steps">
-            <div class="step-item {{if eq .Data.StepNo 1}} is-active {{else}} is-completed is-success {{end}}">
+            <div class="step-item {{if eq .Data.No 1}} is-active {{else}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
-                        <a href="/create/step1">
+                        <a href="/create">
                             <i
-                                class="fa {{if eq .Data.StepNo 1}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 1}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
+              
                 <div class="step-details">
                     <p class="step-title">Vin</p>
                     <p>Please enter the vehicle vin number.</p>
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 2}} is-active {{else if gt .Data.StepNo 2}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 2}} is-active {{else if gt .Data.No 2}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step2">
                             <i
-                                class="fa {{if eq .Data.StepNo 2}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 2}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -31,12 +32,12 @@
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 3}} is-active {{else if gt .Data.StepNo 3}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 3}} is-active {{else if gt .Data.No 3}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step3">
                             <i
-                                class="fa {{if eq .Data.StepNo 3}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 3}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -45,12 +46,12 @@
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 4}} is-active {{else if gt .Data.StepNo 4}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 4}} is-active {{else if gt .Data.No 4}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step4">
                             <i
-                                class="fa {{if eq .Data.StepNo 4}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 4}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -59,12 +60,12 @@
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 5}} is-active {{else if gt .Data.StepNo 5}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 5}} is-active {{else if gt .Data.No 5}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step5">
                             <i
-                                class="fa {{if eq .Data.StepNo 5}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 5}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -73,12 +74,12 @@
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 6}} is-active {{else if gt .Data.StepNo 6}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 6}} is-active {{else if gt .Data.No 6}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step6">
                             <i
-                                class="fa {{if eq .Data.StepNo 6}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 6}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -87,12 +88,12 @@
                 </div>
             </div>
             <div
-                class="step-item {{if eq .Data.StepNo 7 }} is-active {{else if gt .Data.StepNo 7}} is-completed is-success {{end}}">
+                class="step-item {{if eq .Data.No 7 }} is-active {{else if gt .Data.No 7}} is-completed is-success {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step7">
                             <i
-                                class="fa {{if eq .Data.StepNo 7}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fa {{if eq .Data.No 7}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -100,12 +101,12 @@
                     <p>Please confirm all details</p>
                 </div>
             </div>
-            <div class="step-item {{if eq .Data.StepNo 8 }} is-active {{end}}">
+            <div class="step-item {{if eq .Data.No 8 }} is-active {{end}}">
                 <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step8">
                             <i
-                                class="fas {{if eq .Data.StepNo 8}} fa-money-check {{else}} fa-angle-double-right {{end}}"></i></a>
+                                class="fas {{if eq .Data.No 8}} fa-money-check {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
                 <div class="step-details">
@@ -116,5 +117,5 @@
         </div>
     </div>
 </section>
-{{block "currStep" .}} {{end}}
+{{block "currStep" .}}{{end}}
 {{end}}
