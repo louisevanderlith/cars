@@ -4,7 +4,7 @@ import (
 	"github.com/louisevanderlith/cars/resources"
 	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
-	"github.com/louisevanderlith/husk"
+	"github.com/louisevanderlith/husk/keys"
 	"html/template"
 	"log"
 	"net/http"
@@ -65,7 +65,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		key, err := husk.ParseKey(drx.FindParam(r, "key"))
+		key, err := keys.ParseKey(drx.FindParam(r, "key"))
 
 		if err != nil {
 			log.Println(err)

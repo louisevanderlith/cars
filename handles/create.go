@@ -4,7 +4,7 @@ import (
 	"github.com/louisevanderlith/cars/resources"
 	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
-	"github.com/louisevanderlith/husk"
+	"github.com/louisevanderlith/husk/keys"
 	"html/template"
 	"log"
 	"net/http"
@@ -58,7 +58,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 func GetStep3(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step3", tmpl, "./views/step3.html")
 	return func(w http.ResponseWriter, r *http.Request) {
-		vehicleKey, err := husk.ParseKey(drx.FindParam(r, "vehicleKey"))
+		vehicleKey, err := keys.ParseKey(drx.FindParam(r, "vehicleKey"))
 
 		if err != nil {
 			log.Println(err)

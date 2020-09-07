@@ -1,8 +1,8 @@
 package resources
 
-import "github.com/louisevanderlith/husk"
+import "github.com/louisevanderlith/husk/hsk"
 
-func (src *Source) FetchVehicleInfo(k husk.Key) (interface{}, error) {
+func (src *Source) FetchVehicleInfo(k hsk.Key) (interface{}, error) {
 	res, err := src.get("vehicle", "info", k.String())
 
 	if err != nil {
