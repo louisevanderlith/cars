@@ -1,162 +1,308 @@
 {{template "master.html" .}}
 {{define "layoutcontent"}}
-    <!-- Begin Header -->
-    <div class="header-wrapper" id="home">
-        <!-- Begin Hero -->
-        <section class="hero is-medium herocolour">
-            {{template "mobilenav.html" .}}
-            {{template "menu.html" .}}
-            <!-- End Hero Content-->
-        </section>
-
-        <!-- End Hero -->
-    </div>
-    <!-- End Header -->
+<!-- Begin Header -->
+<div class="header-wrapper" id="home">
+    <!-- Begin Hero -->
+    <section class="hero is-medium herocolour">
+        {{template "mobilenav.html" .}}
+        {{template "menu.html" .}}
+        <!-- End Hero Content-->
+    </section>
+    <!-- End Hero -->
+</div>
+<!-- End Header -->
+<div class="section-light about-me" id="about-me">
     <div class="container">
-        <div class="hero" is-overlay is-marginless>
-            <div id="grphPrice" style="border:1px solid teal;">
-
+        <div class="columns is-multiline">
+            <div id="grphPrice" class="column is-6 has-vertically-aligned-content" data-aos="fade-right"
+                style="height: 400px;">
             </div>
-        </div>
-        <div class="hero">
-            <div class="rangeslider">
-                <!--Slider-->
-                <input id="minPrice" name="rangePrice" type="range" min="10000" max="3000000" step="500" value="10000"/>
-                <input id="maxPrice" name="rangePrice" type="range" min="10000" max="3000000" step="500"
-                       value="2800000"/>
-                <br>
-                <span id="minPriceVal" class="range_min light left has-text-weight-bold">10000</span>
-                <span id="maxPriceVal" class="range_max light right has-text-weight-bold">2800000</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="container">
-            <div class="field has-addons">
-                <div class="control is-expanded">
-                    <input class="input has-text-centered" type="search" placeholder="find your dream car">
-                </div>
-                <div class="control">
-                    <a class="button is-info">Search</a>
+            <div class="column is-6" data-aos="fade-left">
+                <div class="content">
+                    <p>
+                        NOG GOED
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="rangeslider">
+            <!--Slider-->
+            <input id="minPrice" name="rangePrice" type="range" min="10000" max="3000000" step="500" value="10000" />
+            <input id="maxPrice" name="rangePrice" type="range" min="10000" max="3000000" step="500"
+                value="3000000" /><br />
+            <span id="minPriceVal" class="range_min light left has-text-weight-bold">10000</span>
+            <span id="maxPriceVal" class="range_max light right has-text-weight-bold">3000000</span>
+        </div>
+    </div>
+</div>
 
-    <section class="container">
-
-
-        <div class="tile is-ancestor">
-
-            <div class="tile is-parent is-8 is-shady">
-                <article class="tile is-child">
-                    <p class="title">Map with pins</p>
-                    <p class="subtitle">See totl cars per "town"</p>
-                    <div class="content">
-                        <div class="content">
-                            <div class="mapouter">
-                                <div class="google-map">
-                                    <iframe
-                                            src="https://www.google.com.qa/maps/d/embed?mid=14RDx6FbM0-eZLkAd0-A5garwJBJRZLhs"
-                                            width="640" height="480"></iframe>
+<div class="section">
+    <div class="container">
+        <div class="field has-addons">
+            <div class="control is-expanded">
+                <input class="input has-text-centered" type="search" placeholder="find your dream car">
+            </div>
+            <div class="control">
+                <a class="button is-info">Search</a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="container">
+    <div class="columns is-multiline">
+        <div class="column">
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-96x96">
+                                        <img src="https://bulma.io/images/placeholders/96x96.png">
+                                    </figure>
                                 </div>
-                                <style>
-                                    .google-map {
-                                        position: relative;
-                                        padding-bottom: 75%;
-                                        height: 0;
-                                        overflow: hidden;
-                                    }
-
-                                    .google-map iframe {
-                                        position: absolute;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100% !important;
-                                        height: 100% !important;
-                                    }
-                                </style>
+                                <div class="media-content">
+                                    <p class="title is-4">Gys Pitzer Wonderboom</p>
+                                    <p class="subtitle is-6"><a
+                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                </article>
-            </div>
-
-            <div class="tile is-parent is-3 is-shady">
-                <article class="tile is-child">
-                    <p class="title">Top 10</p>
-                    <p class="subtitle">Top 10 Brands in SA</p>
-                    <div class="list is-hoverable">
-                        <a class="list-item">
-                            Toyota
-                        </a>
-                        <a class="list-item">
-                            Volkswagen
-                        </a>
-                        <a class="list-item">
-                            Nissan
-                        </a>
-                        <a class="list-item">
-                            Hyundai
-                        </a>
-                        <a class="list-item">
-                            Mercedes-Benz
-                        </a>
-                        <a class="list-item">
-                            Kia
-                        </a>
-                        <a class="list-item">
-                            Isuzu
-                        </a>
-                        <a class="list-item">
-                            BMW
-                        </a>
-                        <a class="list-item">
-                            Renault
-                        </a>
-                        <a class="list-item">
-                            Ford
-                        </a>
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-5by3">
+                                    <img src="https://bulma.io/images/placeholders/800x480.png">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>2010 Toyota Hilux 2.5 D-4d P/u S/c for sale in Gauteng</h4>
+                                <h6>R159000</h6>
+                                <span class="button is-link modal-button" data-target="modal-card">View
+                                    more</span>
+                            </div>
+                        </div>
                     </div>
-                </article>
-            </div>
-        </div>
-        <div class="columns features">
-            <div class="column is-4">
-                <div class="card is-shady">
-                    <div class="card-image has-text-centered">
-                        <i class=""></i>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/gys.jpg" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">Gys Pitzer Wonderboom</p>
+                                    <p class="subtitle is-6"><a
+                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/hilux.jpg" alt="Placeholder image">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>2010 Toyota Hilux 2.5 D-4d P/u S/c for sale in Gauteng</h4>
+                                <h6>R159000</h6>
+                                <span class="button is-link modal-button" data-target="modal-card">View
+                                    more</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <div class="content">
-                            <h4>Want to upload your vehicle history?</h4>
-                            <p>Having a history on an automobile gives buyers peace of mind,
-                                and in most cases gives your car more value, upload yours today
-                                and you'll never have to worry about a lost booklet ever.
-                            </p>
-                            <button class="button is-block is-success is-normal is-fullwidth">Upload now</button>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/gys.jpg" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">Gys Pitzer Wonderboom</p>
+                                    <p class="subtitle is-6"><a
+                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/hilux.jpg" alt="Placeholder image">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>2010 Toyota Hilux 2.5 D-4d P/u S/c for sale in Gauteng</h4>
+                                <h6>R159000</h6>
+                                <span class="button is-link modal-button" data-target="modal-card">View
+                                    more</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/gys.jpg" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">Gys Pitzer Wonderboom</p>
+                                    <p class="subtitle is-6"><a
+                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/hilux.jpg" alt="Placeholder image">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>2010 Toyota Hilux 2.5 D-4d P/u S/c for sale in Gauteng</h4>
+                                <h6>R159000</h6>
+                                <span class="button is-link modal-button" data-target="modal-card">View
+                                    more</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="header">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/gys.jpg" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">Gys Pitzer Wonderboom</p>
+                                    <p class="subtitle is-6"><a
+                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/hilux.jpg" alt="Placeholder image">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>2010 Toyota Hilux 2.5 D-4d P/u S/c for sale in Gauteng</h4>
+                                <h6>R159000</h6>
+                                <span class="button is-link modal-button" data-target="modal-card">View
+                                    more</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="column is-8">
-                <div class="card is-shady">
-                    <div class="card-image has-text-centered">
-                        <i class=""></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            <h4>Need cash quickly?</h4>
-                            <p>Fill out the form and get offers from 3 leading buyers
-                                within 24 hours, we have partnered up with 3 leading
-                                automobile buyers to ensure you get the best price without any
-                                hassles, get paperwork done and payment on the spot.
-                            </p>
-                            <button class="button is-block is-success is-normal is-fullwidth">Get offers</button>
-                        </div>
+        </div>
+        <div class="column is-3 right-image " data-aos="fade-left">
+            <div class="content">
+                <p class="title">Top 10</p>
+                <p class="subtitle">Top 10 Brands in SA</p>
+                <div class="list is-hoverable">
+                    <a class="list-item">
+                        Toyota
+                    </a>
+                    <a class="list-item">
+                        Volkswagen
+                    </a>
+                    <a class="list-item">
+                        Nissan
+                    </a>
+                    <a class="list-item">
+                        Hyundai
+                    </a>
+                    <a class="list-item">
+                        Mercedes-Benz
+                    </a>
+                    <a class="list-item">
+                        Kia
+                    </a>
+                    <a class="list-item">
+                        Isuzu
+                    </a>
+                    <a class="list-item">
+                        BMW
+                    </a>
+                    <a class="list-item">
+                        Renault
+                    </a>
+                    <a class="list-item">
+                        Ford
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns features">
+        <div class="column is-4">
+            <div class="card is-shady">
+                <div class="card-image has-text-centered">
+                    <i class=""></i>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        <h4>Want to upload your vehicle history?</h4>
+                        <p>Having a history on an automobile gives buyers peace of mind,
+                            and in most cases gives your car more value, upload yours today
+                            and you'll never have to worry about a lost booklet ever.
+                        </p>
+                        <button class="button is-block is-success is-normal is-fullwidth">Upload now</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="column is-8">
+            <div class="card is-shady">
+                <div class="card-image has-text-centered">
+                    <i class=""></i>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        <h4>Need cash quickly?</h4>
+                        <p>Fill out the form and get offers from 3 leading buyers
+                            within 24 hours, we have partnered up with 3 leading
+                            automobile buyers to ensure you get the best price without any
+                            hassles, get paperwork done and payment on the spot.
+                        </p>
+                        <button class="button is-block is-success is-normal is-fullwidth">Get offers</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {{end}}
