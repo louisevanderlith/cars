@@ -1,6 +1,7 @@
 {{template "master.html" .}}
 {{define "layoutcontent"}}
-<section class="hero">
+<div style="height: 2em;"></div>
+<section>
     <div class="container">
         <div class="steps">
             <div class="step-item {{if eq .Data.No 1}} is-active {{else}} is-completed is-success {{end}}">
@@ -11,7 +12,7 @@
                                 class="fa {{if eq .Data.No 1}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
                 </div>
-              
+
                 <div class="step-details">
                     <p class="step-title">Vin</p>
                     <p>Please enter the vehicle vin number.</p>
@@ -117,5 +118,7 @@
         </div>
     </div>
 </section>
-{{block "currStep" .}}{{end}}
+<section>
+    {{block "currStep" .}}{{end}}
+</section>
 {{end}}
