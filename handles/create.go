@@ -11,25 +11,25 @@ import (
 )
 
 type Step struct {
-	No int
-	Info   interface{}
+	No   int
+	Info interface{}
 }
 
 func GetCreation(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Create", tmpl, "./views/create.html")
+	pge := mix.PreparePage("Step 1", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
 	return func(w http.ResponseWriter, r *http.Request) {
-
 		err := mix.Write(w, pge.Create(r, Step{No: 1}))
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Serve Error", err)
 		}
 	}
 }
 
 // /:vin
 func GetStep2(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step2", tmpl, "./views/step2.html")
+	pge := mix.PreparePage("Step 2", tmpl, "./views/create.html")
 	return func(w http.ResponseWriter, r *http.Request) {
 		vin := drx.FindParam(r, "vin")
 
@@ -42,7 +42,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 		result, err := src.LookupVIN(vin)
 
 		if err != nil {
-			log.Println(err)
+			log.Println("VIN Lookup Error", err)
 			http.Error(w, "", http.StatusNotFound)
 			return
 		}
@@ -50,13 +50,13 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 		err = mix.Write(w, pge.Create(r, Step{No: 2, Info: result}))
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Serve Error", err)
 		}
 	}
 }
 
 func GetStep3(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step3", tmpl, "./views/step3.html")
+	pge := mix.PreparePage("Step 3", tmpl, "./views/create.html")
 	return func(w http.ResponseWriter, r *http.Request) {
 		vehicleKey, err := keys.ParseKey(drx.FindParam(r, "vehicleKey"))
 
@@ -65,8 +65,68 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 			http.Error(w, "", http.StatusBadRequest)
 			return
 		}
-
+		pge.ChangeTitle("Sell your Vehicle: Step 3")
 		err = mix.Write(w, pge.Create(r, Step{No: 3, Info: vehicleKey}))
+
+		if err != nil {
+			log.Println("Serve Error", err)
+		}
+	}
+}
+
+func GetStep4(tmpl *template.Template) http.HandlerFunc {
+	pge := mix.PreparePage("Step 4", tmpl, "./views/create.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		pge.ChangeTitle("Sell your Vehicle: Step 4")
+		err := mix.Write(w, pge.Create(r, Step{No: 4}))
+
+		if err != nil {
+			log.Println("Serve Error", err)
+		}
+	}
+}
+
+func GetStep5(tmpl *template.Template) http.HandlerFunc {
+	pge := mix.PreparePage("Step 5", tmpl, "./views/create.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		pge.ChangeTitle("Sell your Vehicle: Step 5")
+		err := mix.Write(w, pge.Create(r, Step{No: 5}))
+
+		if err != nil {
+			log.Println("Serve Error", err)
+		}
+	}
+}
+
+func GetStep6(tmpl *template.Template) http.HandlerFunc {
+	pge := mix.PreparePage("Step 6", tmpl, "./views/create.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		pge.ChangeTitle("Sell your Vehicle: Step 6")
+		err := mix.Write(w, pge.Create(r, Step{No: 6}))
+
+		if err != nil {
+			log.Println("Serve Error", err)
+		}
+	}
+}
+
+func GetStep7(tmpl *template.Template) http.HandlerFunc {
+	pge := mix.PreparePage("Step 7", tmpl, "./views/create.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		pge.ChangeTitle("Sell your Vehicle: Step 7")
+		err := mix.Write(w, pge.Create(r, Step{No: 7}))
+
+		if err != nil {
+			log.Println("Serve Error", err)
+		}
+	}
+}
+
+func GetStep8(tmpl *template.Template) http.HandlerFunc {
+	pge := mix.PreparePage("Step 8", tmpl, "./views/create.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		pge.ChangeTitle("Sell your Vehicle: Step 8")
+		err := mix.Write(w, pge.Create(r, Step{No: 8}))
 
 		if err != nil {
 			log.Println("Serve Error", err)

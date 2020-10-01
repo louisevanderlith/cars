@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:dart_toast/dart_toast.dart';
 import 'package:mango_ui/formstate.dart';
 import 'package:mango_vin/vinapi.dart';
 
 class VINForm extends FormState {
   TextInputElement _vin;
-  ParagraphElement _error;
 
   VINForm(String idElem, String vinElem, String submitBtn)
       : super(idElem, submitBtn) {
     _vin = querySelector(vinElem);
-    _error = querySelector("${idElem}Err");
 
     querySelector(submitBtn).onClick.listen(onSend);
   }
@@ -25,16 +24,18 @@ class VINForm extends FormState {
       disableSubmit(true);
 
       var result = await validateVIN(vin);
-      var obj = jsonDecode(result.response);
+      var data = jsonDecode(result.response);
 
       if (result.status == 200) {
-        var data = obj['Data'];
         print(data);
         if (data) {
           window.location.replace('/create/step2/${vin}');
         }
       } else {
-        _error.text = obj['Error'];
+        new Toast.error(
+            title: "Error!",
+            message: "Validation Failed\n${data}",
+            position: ToastPos.bottomLeft);
       }
     }
   }

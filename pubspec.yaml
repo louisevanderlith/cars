@@ -14,3 +14,4 @@ dependencies:
   mango_vehicle: '^1.0.7'
   mango_artifact: '^1.0.1'
   modern_charts: '^0.1.19'
+  dart_toast: '^0.3.0'

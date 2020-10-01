@@ -1,7 +1,5 @@
 package resources
 
-import "errors"
-
 func (src *Source) ValidateVIN(vin string) (bool, error) {
 	res, err := src.get("vin", "validate", vin)
 
@@ -17,5 +15,5 @@ func (src *Source) ValidateVIN(vin string) (bool, error) {
 }
 
 func (src *Source) LookupVIN(vin string) (interface{}, error) {
-	return nil, errors.New("BROKEN")
+	return src.get("vin", "lookup", vin)
 }

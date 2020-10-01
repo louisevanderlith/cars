@@ -1,124 +1,140 @@
 {{template "master.html" .}}
 {{define "layoutcontent"}}
-<div style="height: 2em;"></div>
-<section>
-    <div class="container">
-        <div class="steps">
-            <div class="step-item {{if eq .Data.No 1}} is-active {{else}} is-completed is-success {{end}}">
-                <div class="step-marker">
+    <div style="height: 2em;"></div>
+    <section>
+        <div class="container">
+            <div class="steps">
+                <div class="step-item {{if eq .Data.No 1}} is-active {{else}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create">
                             <i
-                                class="fa {{if eq .Data.No 1}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 1}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
-                </div>
+                    </div>
 
-                <div class="step-details">
-                    <p class="step-title">Vin</p>
-                    <p>Please enter the vehicle vin number.</p>
+                    <div class="step-details">
+                        <p class="step-title">Vin</p>
+                        <p>Please enter the vehicle vin number.</p>
+                    </div>
                 </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 2}} is-active {{else if gt .Data.No 2}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 2}} is-active {{else if gt .Data.No 2}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step2">
                             <i
-                                class="fa {{if eq .Data.No 2}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 2}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Confirm</p>
+                        <p>Please upload photos of your vehicle</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Confirm</p>
-                    <p>Please upload photos of your vehicle</p>
-                </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 3}} is-active {{else if gt .Data.No 3}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 3}} is-active {{else if gt .Data.No 3}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step3">
                             <i
-                                class="fa {{if eq .Data.No 3}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 3}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Photos</p>
+                        <p>Please upload photos of your vehicle</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Photos</p>
-                    <p>Please upload photos of your vehicle</p>
-                </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 4}} is-active {{else if gt .Data.No 4}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 4}} is-active {{else if gt .Data.No 4}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step4">
                             <i
-                                class="fa {{if eq .Data.No 4}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 4}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Extra's</p>
+                        <p>Please tick all applicable extras</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Extra's</p>
-                    <p>Please tick all applicable extras</p>
-                </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 5}} is-active {{else if gt .Data.No 5}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 5}} is-active {{else if gt .Data.No 5}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step5">
                             <i
-                                class="fa {{if eq .Data.No 5}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 5}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Info</p>
+                        <p>Please enter your price and mileage</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Info</p>
-                    <p>Please enter your price and mileage</p>
-                </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 6}} is-active {{else if gt .Data.No 6}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 6}} is-active {{else if gt .Data.No 6}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step6">
                             <i
-                                class="fa {{if eq .Data.No 6}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 6}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Service History</p>
+                        <p>Would you like to quickly add your car's service history</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Service History</p>
-                    <p>Would you like to quickly add your car's service history</p>
-                </div>
-            </div>
-            <div
-                class="step-item {{if eq .Data.No 7 }} is-active {{else if gt .Data.No 7}} is-completed is-success {{end}}">
-                <div class="step-marker">
+                <div
+                        class="step-item {{if eq .Data.No 7 }} is-active {{else if gt .Data.No 7}} is-completed is-success {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step7">
                             <i
-                                class="fa {{if eq .Data.No 7}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fa {{if eq .Data.No 7}} fa-angle-double-down {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Confirmation</p>
+                        <p>Please confirm all details</p>
+                    </div>
                 </div>
-                <div class="step-details">
-                    <p class="step-title">Confirmation</p>
-                    <p>Please confirm all details</p>
-                </div>
-            </div>
-            <div class="step-item {{if eq .Data.No 8 }} is-active {{end}}">
-                <div class="step-marker">
+                <div class="step-item {{if eq .Data.No 8 }} is-active {{end}}">
+                    <div class="step-marker">
                     <span class="icon">
                         <a href="/create/step8">
                             <i
-                                class="fas {{if eq .Data.No 8}} fa-money-check {{else}} fa-angle-double-right {{end}}"></i></a>
+                                    class="fas {{if eq .Data.No 8}} fa-money-check {{else}} fa-angle-double-right {{end}}"></i></a>
                     </span>
-                </div>
-                <div class="step-details">
-                    <p class="step-title">Payment</p>
-                    <p>Please choose your payment option</p>
+                    </div>
+                    <div class="step-details">
+                        <p class="step-title">Payment</p>
+                        <p>Please choose your payment option</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<section>
-    {{block "currStep" .}}{{end}}
-</section>
+    </section>
+    <section>
+        {{if eq .Data.No 1}}
+            {{template "step1.html" .}}
+        {{else if eq .Data.No 2}}
+            {{template "step2.html" .}}
+        {{else if eq .Data.No 3}}
+            {{template "step3.html" .}}
+        {{else if eq .Data.No 4}}
+            {{template "step4.html" .}}
+        {{else if eq .Data.No 5}}
+            {{template "step5.html" .}}
+        {{else if eq .Data.No 6}}
+            {{template "step6.html" .}}
+        {{else if eq .Data.No 7}}
+            {{template "step7.html" .}}
+        {{else if eq .Data.No 8}}
+            {{template "step8.html" .}}
+        {{end}}
+    </section>
 {{end}}

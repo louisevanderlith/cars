@@ -1,4 +1,3 @@
-{{template "create.html" .}} {{define "currStep"}}
 <section>
     <div class="content">
         <div class="container">
@@ -14,7 +13,7 @@
                     <div class="field">
                         <div class="control">
                             <input class="input is-mormal" id="txtPrice" required minlength="4" type="text"
-                                placeholder="Price" autofocus="" autocorrect="off" autocapitalize="off">
+                                   placeholder="Price" autofocus="" autocorrect="off" autocapitalize="off">
                             <p class="help is-danger"></p>
                             <br>
                             <p class="subtitle has-text-grey has-text-centered">Please enter your mileage</p>
@@ -22,8 +21,8 @@
                                 <div class="field">
                                     <div class="control">
                                         <input class="input is-mormal" id="txtMileage" required minlength="2" type="int"
-                                            placeholder="Mileage (KM)" autofocus="" autocorrect="off"
-                                            autocapitalize="off">
+                                               placeholder="Mileage (KM)" autofocus="" autocorrect="off"
+                                               autocapitalize="off">
                                         <p class="help is-danger"></p>
                                     </div>
                                 </div>
@@ -36,9 +35,3 @@
         </div>
     </div>
 </section>
-<!--
-        <p class="has-text-grey">
-            <a href="/register">Register</a> &nbsp;·&nbsp;
-            <a href="/forgot">Forgot Password</a>
-        </p>-->
-{{end}}
