@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
+func SetupRoutes(clnt, scrt, secureUrl, managerUrl, authUrl string) http.Handler {
 	tmpl, err := drx.LoadTemplate("./views")
 
 	if err != nil {
@@ -19,7 +19,7 @@ func SetupRoutes(clnt, scrt, secureUrl, authUrl string) http.Handler {
 	fs := http.FileServer(distPath)
 	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", fs))
 
-	clntIns := middle.NewClientInspector(clnt, scrt, http.DefaultClient, secureUrl, authUrl)
+	clntIns := middle.NewClientInspector(clnt, scrt, http.DefaultClient, secureUrl, managerUrl, authUrl)
 	r.HandleFunc("/", clntIns.Middleware(Index(tmpl), map[string]bool{"stock.cars.search": true})).Methods(http.MethodGet)
 	r.HandleFunc("/{pagesize:[A-Z][0-9]+}", clntIns.Middleware(SearchAds(tmpl), map[string]bool{"stock.cars.search": true})).Methods(http.MethodGet)
 	r.HandleFunc("/{pagesize:[A-Z][0-9]+}/{hash:[a-zA-Z0-9]+={0,2}}", clntIns.Middleware(SearchAds(tmpl), map[string]bool{"stock.cars.search": true})).Methods(http.MethodGet)
