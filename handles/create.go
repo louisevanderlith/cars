@@ -1,10 +1,10 @@
 package handles
 
 import (
-	"github.com/louisevanderlith/cars/resources"
 	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk/keys"
+	"github.com/louisevanderlith/vin/api"
 	"html/template"
 	"log"
 	"net/http"
@@ -38,8 +38,8 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		src := resources.APIResource(http.DefaultClient, r)
-		result, err := src.LookupVIN(vin)
+		clnt := CredConfig.Client(r.Context())
+		result, err := api.LookupVIN(clnt, Endpoints["vin"], vin)
 
 		if err != nil {
 			log.Println("VIN Lookup Error", err)

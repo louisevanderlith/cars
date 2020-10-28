@@ -11,7 +11,6 @@ FROM build_base as builder
 
 COPY main.go .
 COPY handles ./handles
-COPY resources ./resources
 
 RUN CGO_ENABLED="0" go build
 
