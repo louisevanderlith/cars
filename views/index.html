@@ -33,7 +33,7 @@
                 <!--Slider-->
                 <input id="minPrice" name="rangePrice" type="range" min="{{.Data.Min}}" max="{{.Data.Max}}" step="500"
                        value="{{.Data.Min}}"/>
-                <input id="maxPrice" name="rangePrice" type="range" min="{{.Data.Max}}" max="{{.Data.Ax}}" step="500"
+                <input id="maxPrice" name="rangePrice" type="range" min="{{.Data.Min}}" max="{{.Data.Max}}" step="500"
                        value="{{.Data.Max}}"/><br/>
                 <span id="minPriceVal" class="range_min light left has-text-weight-bold">{{.Data.Min}}</span>
                 <span id="maxPriceVal" class="range_max light right has-text-weight-bold">{{.Data.Max}}</span>
@@ -56,45 +56,51 @@
     <section class="container">
         <div class="columns is-multiline">
             <div class="column">
-                <div class="columns is-multiline">
-                    {{range .Data.Results.Records}}
-                        <div class="column is-4">
-                            <div class="card">
-                                <div class="header">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="image is-96x96">
-                                                <img src="{{index .Endpoints "artifact"}}/download/{{.OwnerKey}}">
+                {{if .Data.Results}}
+                    <div class="columns is-multiline">
+                        {{$artUrl := index .Endpoints "artifact"}}
+                        {{range .Data.Results.GetRecords.ToSlice}}
+                            {{$v := .GetValue}}
+                            {{$k := .GetKey}}
+                            <div class="column is-4">
+                                <div class="card">
+                                    <div class="header">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <figure class="image is-96x96">
+                                                    <img src="{{$artUrl}}/download/{{$v.OwnerKey}}">
+                                                </figure>
+                                            </div>
+                                            <div class="media-content">
+                                                <p class="title is-4">{{$v.ShortName}}</p>
+                                                <p class="subtitle colourSecondary is-6">
+                                                    <a
+                                                            href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card is-shady">
+                                        <div class="card-image">
+                                            <figure class="image is-5by3">
+                                                <img src="{{$artUrl}}/download/{{$v.ImageKey}}">
                                             </figure>
                                         </div>
-                                        <div class="media-content">
-                                            <p class="title is-4">{{.ShortName}}</p>
-                                            <p class="subtitle colourSecondary is-6">
-                                                <a
-                                                        href="https://www.facebook.com/gyspitzermotors/">Facebook</a>
-                                            </p>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="card is-shady">
-                                    <div class="card-image">
-                                        <figure class="image is-5by3">
-                                            <img src="{{index .Endpoints "artifact"}}/download/{{.ImageKey}}">
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <div class="content">
-                                        <h4>{{.Info}} {{.Tags}}</h4>
-                                        <h6>{{.Price}} <i>Est. {{.EstValue}}</i></h6>
-                                        <span class="button is-link modal-button" data-target="modal-card">View
+                                    <div class="card-content">
+                                        <div class="content">
+                                            <h4>{{$v.Info}} {{$v.Tags}}</h4>
+                                            <h6>{{$v.Price}} <i>Est. {{$v.EstValue}}</i></h6>
+                                            <span class="button is-link modal-button" data-id="{{$k}}"
+                                                  data-target="modal-card">View
                                     more</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {{end}}
-                </div>
+                        {{end}}
+                    </div>
+                {{end}}
             </div>
             <div class="column is-3 right-image " data-aos="fade-left">
                 <div class="content">

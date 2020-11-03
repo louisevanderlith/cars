@@ -2,6 +2,7 @@ package handles
 
 import (
 	"github.com/louisevanderlith/droxolite/mix"
+	"github.com/louisevanderlith/husk/hsk"
 	"github.com/louisevanderlith/husk/records"
 	"github.com/louisevanderlith/stock/api"
 	"github.com/louisevanderlith/stock/core"
@@ -44,23 +45,27 @@ type StockStats struct {
 }
 
 func GenerateStockStats(items records.Page) StockStats {
+	if items.GetRecords() == nil {
+		return StockStats{}
+	}
+
 	itor := items.GetEnumerator()
 
 	min := int64(999999)
 	max := int64(0)
 	stats := make(map[string]int)
 	for itor.MoveNext() {
-		rec := itor.Current().(core.Car)
-
-		if rec.Price < min {
-			min = rec.Price
+		rec := itor.Current().(hsk.Record)
+		obj := rec.GetValue().(*core.Car)
+		if obj.Price < min {
+			min = obj.Price
 		}
 
-		if rec.Price > max {
-			max = rec.Price
+		if obj.Price > max {
+			max = obj.Price
 		}
 
-		for _, tag := range rec.Tags {
+		for _, tag := range obj.Tags {
 			stat, ok := stats[tag]
 
 			if !ok {

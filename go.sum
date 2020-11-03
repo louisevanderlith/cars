@@ -132,12 +132,10 @@ github.com/louisevanderlith/husk v1.7.4 h1:DlY2WmdK2LSb9OVgc5LTfFGedbeVralfiDoWB
 github.com/louisevanderlith/husk v1.7.4/go.mod h1:iEFeOL3LmBuXlHl3lhiq8yDfob2CNbv+p23ZjP5DORU=
 github.com/louisevanderlith/husk v1.7.6 h1:etAg02vmiMWbGwifm1OgcjBk8nZUiArzt9+0KU2nUMs=
 github.com/louisevanderlith/husk v1.7.6/go.mod h1:iEFeOL3LmBuXlHl3lhiq8yDfob2CNbv+p23ZjP5DORU=
-github.com/louisevanderlith/stock v1.0.0 h1:MkVHR3xctBqT3WzwbwwS7I5UFTl4r6yqBN6U770K7is=
-github.com/louisevanderlith/stock v1.0.0/go.mod h1:C9To+uE6ADqzg8CxeF4MPfWZFtd65CJ13e+vpXRg6MY=
+github.com/louisevanderlith/stock v1.0.1 h1:+VhVUdW13hhIGYHe3oFFNhSkE9eIypybNqMrxSzX6iw=
+github.com/louisevanderlith/stock v1.0.1/go.mod h1:03n8k59XB3GHMNtSSYAp9TfMoKat7W+3zEEHnJIF3UY=
 github.com/louisevanderlith/theme v1.0.1 h1:nAX/YvSYu4FRBXPYxf9zqNE51GPjig0S7o83XVEpJeE=
 github.com/louisevanderlith/theme v1.0.1/go.mod h1:pe2AmbkKt/AaEdI7ZxYJqrlwzc3cly6pYeJBoxaos1s=
-github.com/louisevanderlith/vehicle v1.0.0 h1:dSPadqzMBv07hu0SE5YlKb6SRNQJu97lrHwt7j42a0k=
-github.com/louisevanderlith/vehicle v1.0.0/go.mod h1:pJ/pyiMDK1aRiHHE1pyJ+2HrPSlXruzif/GGa0ttDSM=
 github.com/louisevanderlith/vin v1.0.1 h1:CsqXWSgpVbLYp8bYz+fAwbd9KC9mID1iNksTWG/JrHk=
 github.com/louisevanderlith/vin v1.0.1/go.mod h1:S4ai0gd488hz7M64kJ3XdrPzB/RYSnAJjN57KQMNCY8=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
