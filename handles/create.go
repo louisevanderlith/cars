@@ -18,6 +18,9 @@ type Step struct {
 func GetCreation(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 1", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := mix.Write(w, pge.Create(r, Step{No: 1}))
 
@@ -30,6 +33,10 @@ func GetCreation(tmpl *template.Template) http.HandlerFunc {
 // /:vin
 func GetStep2(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 2", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		vin := drx.FindParam(r, "vin")
 
@@ -57,6 +64,10 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep3(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 3", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		vehicleKey, err := keys.ParseKey(drx.FindParam(r, "vehicleKey"))
 
@@ -76,6 +87,10 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep4(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 4", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 4")
 		err := mix.Write(w, pge.Create(r, Step{No: 4}))
@@ -88,6 +103,10 @@ func GetStep4(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep5(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 5", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 5")
 		err := mix.Write(w, pge.Create(r, Step{No: 5}))
@@ -100,6 +119,10 @@ func GetStep5(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep6(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 6", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 6")
 		err := mix.Write(w, pge.Create(r, Step{No: 6}))
@@ -112,6 +135,10 @@ func GetStep6(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep7(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 7", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 7")
 		err := mix.Write(w, pge.Create(r, Step{No: 7}))
@@ -124,6 +151,10 @@ func GetStep7(tmpl *template.Template) http.HandlerFunc {
 
 func GetStep8(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 8", tmpl, "./views/create.html")
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 8")
 		err := mix.Write(w, pge.Create(r, Step{No: 8}))

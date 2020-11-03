@@ -12,20 +12,17 @@ import (
 
 func GetAds(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
-
+	pge.AddMenu(FullMenu())
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		clnt := CredConfig.Client(r.Context())
 		result, err := api.FetchAllCars(clnt, Endpoints["stock"], "A10")
 
 		if err != nil {
-			log.Println(err)
-			http.Error(w, "", http.StatusUnauthorized)
-			return
-		}
-
-		if err != nil {
-			log.Println(err)
-			http.Error(w, "", http.StatusBadRequest)
+			log.Println("Fetch Cars Error", err)
+			http.Error(w, "", http.StatusInternalServerError)
 			return
 		}
 
@@ -39,6 +36,8 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 
 func SearchAds(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
 	return func(w http.ResponseWriter, r *http.Request) {
 		pagesize := drx.FindParam(r, "pagesize")
 
@@ -61,6 +60,8 @@ func SearchAds(tmpl *template.Template) http.HandlerFunc {
 
 func ViewAd(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
+	pge.AddModifier(mix.EndpointMod(Endpoints))
+	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		key, err := keys.ParseKey(drx.FindParam(r, "key"))
