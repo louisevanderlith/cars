@@ -4,7 +4,7 @@ import (
 	"github.com/louisevanderlith/droxolite/drx"
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk/keys"
-	"github.com/louisevanderlith/stock/api"
+	"github.com/louisevanderlith/vehicle/api"
 	"html/template"
 	"log"
 	"net/http"
@@ -18,7 +18,7 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		clnt := CredConfig.Client(r.Context())
-		result, err := api.FetchAllCars(clnt, Endpoints["stock"], "A10")
+		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], "A10")
 
 		if err != nil {
 			log.Println("Fetch Cars Error", err)
@@ -36,13 +36,15 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 
 func SearchAds(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
+	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
 	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pagesize := drx.FindParam(r, "pagesize")
 
 		clnt := CredConfig.Client(r.Context())
-		result, err := api.FetchAllCars(clnt, Endpoints["stock"], pagesize)
+		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], pagesize)
 
 		if err != nil {
 			log.Println(err)
@@ -73,10 +75,10 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 		}
 
 		clnt := CredConfig.Client(r.Context())
-		result, err := api.FetchCar(clnt, Endpoints["stock"], key)
+		result, err := api.FetchVehicleInfo(clnt, Endpoints["vehicle"], key)
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Vehicle Info Error", err)
 			http.Error(w, "", http.StatusNotFound)
 			return
 		}
@@ -84,7 +86,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 		err = mix.Write(w, pge.Create(r, result))
 
 		if err != nil {
-			log.Println(err)
+			log.Println("Serve Error", err)
 		}
 	}
 }

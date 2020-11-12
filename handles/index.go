@@ -4,11 +4,12 @@ import (
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk/hsk"
 	"github.com/louisevanderlith/husk/records"
-	"github.com/louisevanderlith/stock/api"
-	"github.com/louisevanderlith/stock/core"
+	"github.com/louisevanderlith/vehicle/api"
+	"github.com/louisevanderlith/vehicle/core"
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func Index(tmpl *template.Template) http.HandlerFunc {
@@ -21,7 +22,7 @@ func Index(tmpl *template.Template) http.HandlerFunc {
 		pge.ChangeTitle("Cars")
 
 		clnt := CredConfig.Client(r.Context())
-		result, err := api.FetchAllCars(clnt, Endpoints["stock"], "A10")
+		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], "A10")
 
 		if err != nil {
 			log.Println("Fetch Cars Error", err)
@@ -56,16 +57,24 @@ func GenerateStockStats(items records.Page) StockStats {
 	stats := make(map[string]int)
 	for itor.MoveNext() {
 		rec := itor.Current().(hsk.Record)
-		obj := rec.GetValue().(*core.Car)
-		if obj.Price < min {
-			min = obj.Price
+		obj := rec.GetValue().(*core.Vehicle)
+		if obj.EstValue < min {
+			min = obj.EstValue
 		}
 
-		if obj.Price > max {
-			max = obj.Price
+		if obj.EstValue > max {
+			max = obj.EstValue
 		}
 
-		for _, tag := range obj.Tags {
+		tags := []string{
+			strconv.Itoa(obj.Year),
+			obj.Series.Manufacturer,
+			obj.Series.Model,
+			obj.Info,
+		}
+		tags = append(tags, obj.Extra...)
+
+		for _, tag := range tags {
 			stat, ok := stats[tag]
 
 			if !ok {

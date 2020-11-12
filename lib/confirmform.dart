@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:dart_toast/dart_toast.dart';
 import 'package:mango_ui/formstate.dart';
 import 'package:mango_ui/keys.dart';
 import 'package:mango_vehicle/bodies/engine.dart';
@@ -12,18 +13,16 @@ import 'package:mango_vehicle/vehicleapi.dart';
 class ConfirmForm extends FormState {
   HiddenInputElement _vinKey;
   HiddenInputElement _vin;
+  SelectElement cboBodyStyle;
   CheckboxInputElement _accept;
 
-  ParagraphElement _error;
-
   ConfirmForm(String idElem, String vinKeyElem, String vinElem,
-      String acceptElem, String submitBtn)
+      String styleElem, String acceptElem, String submitBtn)
       : super(idElem, submitBtn) {
     _vinKey = querySelector(vinKeyElem);
     _vin = querySelector(vinElem);
+    cboBodyStyle = querySelector(styleElem);
     _accept = querySelector(acceptElem);
-
-    _error = querySelector("${idElem}Err");
 
     querySelector(submitBtn).onClick.listen(onSend);
   }
@@ -88,8 +87,8 @@ class ConfirmForm extends FormState {
     return false;
   }
 
-  String get bodytype {
-    return "Unknown";
+  num get bodystyle {
+    return cboBodyStyle.selectedIndex;
   }
 
   num get doors {
@@ -128,7 +127,7 @@ class ConfirmForm extends FormState {
           paintNo,
           engine,
           gearbox,
-          bodytype,
+          bodystyle,
           doors,
           extra,
           spare,
@@ -136,17 +135,20 @@ class ConfirmForm extends FormState {
           condition,
           issues,
           mileage);
+
       var result = await submitVehicle(vh);
-      var obj = jsonDecode(result.response);
 
       if (result.status == 200) {
+        var obj = jsonDecode(result.response);
         var data = obj['Data'];
-        print(data);
         if (data) {
           window.location.replace('/create/step3/${vin}');
         }
       } else {
-        _error.text = obj['Error'];
+        Toast.error(
+            title: "Failed!",
+            message: result.response,
+            position: ToastPos.bottomLeft);
       }
     }
   }

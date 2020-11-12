@@ -1,9 +1,137 @@
 <div class="container has-text-centered">
     <div class="column is-4 is-offset-4">
-        <p class="subtitle colourSecondary has-text-grey">Please confirm that the information mentioned below is correct</p>
+        <p class="subtitle colourSecondary has-text-grey">Please confirm that the information mentioned below is
+            correct</p>
         <div class="box">
-            {{.Data}}
+            <form role="form" id="frmStep2">
+                {{$v := .Data.Info.GetValue}}
+                {{$k := .Data.Info.GetKey}}
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="txtColour">Colour</label>
+                        <input class="input" type="text" id="txtColour" placeholder="Colour" required
+                        />
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="txtPaintNo">PaintNo</label>
+                        <input class="input" type="text" id="txtPaintNo" placeholder="PaintNo" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="txtTitle">Body Style</label>
+                    <div class="control">
+                        <select class="select" id="cboBodyStyle">
+                            <option>Bus</option>
+                            <option>Cabriolet</option>
+                            <option>Coupe</option>
+                            <option>Double-Cab Bakkie</option>
+                            <option>Dropside</option>
+                            <option>Hatchback</option>
+                            <option>MPV</option>
+                            <option>Panel van</option>
+                            <option>SUV</option>
+                            <option {{if eq $v.WMInfo.VehicleType "PassengerCar"}}selected{{end}}>Sedan</option>
+                            <option>Single-Cab Bakkie</option>
+                            <option>Station Wagon</option>
+                        </select>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="numDoors">Doors</label>
+                        <input class="input" type="number" min="2" max="5" id="numDoors" required
+                        />
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="chkSpare">Spare Key</label>
+                        <input class="input" type="checkbox" id="chkSpare" required
+                        />
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="txtCondition">Condition</label>
+                    <div class="control">
+                        <input class="input" type="text" id="txtCondition" placeholder="Condition" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="txtIssues">Issues</label>
+                        <input class="input" type="text" id="txtIssues" placeholder="Issues" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="numMileage">Mileage</label>
+                        <input class="input" type="number" min="1" max="9999999" id="numMileage" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="txtInfo">Info</label>
+                        <input class="input" type="text" id="txtInfo" placeholder="Info" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="numYear">Year</label>
+                        <input class="input" type="number" min="1900" max="2200" id="numYear" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="chkHasNatis">HasNatis</label>
+                        <input class="input" type="checkbox" id="chkHasNatis" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="numEstValue">EstValue</label>
+                        <input class="input" type="number" min="1" id="numEstValue" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="label" for="numLicenseExpiry">LicenseExpiry</label>
+                        <input class="input" type="date" min="1" id="numLicenseExpiry" required/>
+                        <p class="help is-danger"></p>
+                    </div>
+                </div>
 
+                Country:{{$v.WMInfo.Country}}
+
+                Manufacturer:{{$v.WMInfo.Manufacturer}}
+                VDS: {{$v.VDSInfo}}
+                <input type="hidden" id="hdnVINKey" value="{{$k}}">
+                <input type="hidden" id="hdnVIN" value="{{$v.Full}}">
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox" for="chkValid">
+                            <input type="checkbox" id="chkValid"/>
+                            This information is correct
+                            <p class="help is-danger"></p></label>
+
+                    </div>
+                </div>
+                <button id="btnNext" type="button" class="button is-block is-success is-normal is-fullwidth">Next
+                </button>
+            </form>
         </div>
     </div>
 </div>

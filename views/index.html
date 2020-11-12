@@ -1,16 +1,5 @@
-{{template "master.html" .}}
-{{define "layoutcontent"}}
-    <!-- Begin Header -->
-    <div class="header-wrapper" id="home">
-        <!-- Begin Hero -->
-        <section class="hero is-medium herocolour">
-            {{template "mobilenav.html" .}}
-            {{template "menu.html" .}}
-            <!-- End Hero Content-->
-        </section>
-        <!-- End Hero -->
-    </div>
-    <!-- End Header -->
+{{template "layout.html" .}}
+{{define "pagecontent"}}
     <div class="section-light about-me" id="about-me">
         <div class="container">
             <div class="columns is-multiline" data-aos="fade-right">
@@ -149,11 +138,8 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <h4>Want to upload your vehicle history?</h4>
-                            <p>Having a history on an automobile gives buyers peace of mind,
-                                and in most cases gives your car more value, upload yours today
-                                and you'll never have to worry about a lost booklet ever.
-                            </p>
+                            <h4>{{.Folio.SectionA.Heading}}</h4>
+                            <p>{{.Folio.SectionA.Text}}</p>
                             <button class="button is-block is-success is-normal is-fullwidth">Upload now</button>
                         </div>
                     </div>
@@ -166,12 +152,8 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <h4>Need cash quickly?</h4>
-                            <p>Fill out the form and get offers from 3 leading buyers
-                                within 24 hours, we have partnered up with 3 leading
-                                automobile buyers to ensure you get the best price without any
-                                hassles, get paperwork done and payment on the spot.
-                            </p>
+                            <h4>{{.Folio.SectionB.Heading}}</h4>
+                            <p>{{.Folio.SectionB.Text}}</p>
                             <button class="button is-block is-success is-normal is-fullwidth">Get offers</button>
                         </div>
                     </div>

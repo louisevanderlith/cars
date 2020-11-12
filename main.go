@@ -17,15 +17,17 @@ func main() {
 	vin := flag.String("vin", "http://127.0.0.1:8095", "VIN URL")
 	folio := flag.String("folio", "http://127.0.0.1:8090", "Folio URL")
 	artifact := flag.String("artifact", "http://127.0.0.1:8082", "Artifact URL")
+	vehicle := flag.String("vehicle", "http://127.0.0.1:8098", "Vehicle URL")
 	flag.Parse()
 
 	ends := map[string]string{
-		"issuer": *issuer,
-		"theme":  *theme,
-		"vin":    *vin,
-		"stock":  *stock,
-		"folio": *folio,
+		"issuer":   *issuer,
+		"theme":    *theme,
+		"vin":      *vin,
+		"stock":    *stock,
+		"folio":    *folio,
 		"artifact": *artifact,
+		"vehicle":  *vehicle,
 	}
 
 	srvr := &http.Server{

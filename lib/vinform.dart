@@ -24,17 +24,16 @@ class VINForm extends FormState {
       disableSubmit(true);
 
       var result = await validateVIN(vin);
-      var data = jsonDecode(result.response);
 
       if (result.status == 200) {
-        print(data);
+        var data = jsonDecode(result.response);
         if (data) {
           window.location.replace('/create/step2/${vin}');
         }
       } else {
         new Toast.error(
             title: "Error!",
-            message: "Validation Failed\n${data}",
+            message: result.response,
             position: ToastPos.bottomLeft);
       }
     }
