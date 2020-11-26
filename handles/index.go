@@ -6,6 +6,7 @@ import (
 	"github.com/louisevanderlith/husk/records"
 	"github.com/louisevanderlith/vehicle/api"
 	"github.com/louisevanderlith/vehicle/core"
+	"golang.org/x/oauth2"
 	"html/template"
 	"log"
 	"net/http"
@@ -16,12 +17,13 @@ func Index(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Index", tmpl, "./views/index.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Cars")
 
-		clnt := CredConfig.Client(r.Context())
+		tkn := r.Context().Value("Token").(oauth2.Token)
+		clnt := AuthConfig.Client(r.Context(), &tkn)
 		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], "A10")
 
 		if err != nil {

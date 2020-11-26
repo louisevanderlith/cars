@@ -5,6 +5,7 @@ import (
 	"github.com/louisevanderlith/droxolite/mix"
 	"github.com/louisevanderlith/husk/keys"
 	"github.com/louisevanderlith/vin/api"
+	"golang.org/x/oauth2"
 	"html/template"
 	"log"
 	"net/http"
@@ -19,7 +20,7 @@ func GetCreation(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 1", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := mix.Write(w, pge.Create(r, Step{No: 1}))
@@ -35,7 +36,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 2", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		vin := drx.FindParam(r, "vin")
@@ -45,7 +46,8 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		clnt := CredConfig.Client(r.Context())
+		tkn := r.Context().Value("Token").(oauth2.Token)
+		clnt := AuthConfig.Client(r.Context(), &tkn)
 		result, err := api.LookupVIN(clnt, Endpoints["vin"], vin)
 
 		if err != nil {
@@ -66,7 +68,7 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 3", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		vehicleKey, err := keys.ParseKey(drx.FindParam(r, "vehicleKey"))
@@ -89,7 +91,7 @@ func GetStep4(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 4", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 4")
@@ -105,7 +107,7 @@ func GetStep5(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 5", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 5")
@@ -121,7 +123,7 @@ func GetStep6(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 6", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 6")
@@ -137,7 +139,7 @@ func GetStep7(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 7", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 7")
@@ -153,7 +155,7 @@ func GetStep8(tmpl *template.Template) http.HandlerFunc {
 	pge := mix.PreparePage("Step 8", tmpl, "./views/create.html")
 	pge.AddMenu(FullMenu())
 	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(CredConfig.ClientID))
+	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
 	pge.AddModifier(ThemeContentMod())
 	return func(w http.ResponseWriter, r *http.Request) {
 		pge.ChangeTitle("Sell your Vehicle: Step 8")

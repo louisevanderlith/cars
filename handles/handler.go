@@ -17,7 +17,8 @@ import (
 )
 
 var (
-	CredConfig *clientcredentials.Config
+	AuthConfig *oauth2.Config
+	credConfig *clientcredentials.Config
 	Endpoints  map[string]string
 )
 
@@ -31,7 +32,7 @@ func SetupRoutes(host, clientId, clientSecret string, endpoints map[string]strin
 
 	Endpoints = endpoints
 
-	authConfig := &oauth2.Config{
+	AuthConfig = &oauth2.Config{
 		ClientID:     clientId,
 		ClientSecret: clientSecret,
 		Endpoint:     provider.Endpoint(),
@@ -39,14 +40,14 @@ func SetupRoutes(host, clientId, clientSecret string, endpoints map[string]strin
 		Scopes:       []string{oidc.ScopeOpenID, "vin-validate"},
 	}
 
-	CredConfig = &clientcredentials.Config{
+	credConfig = &clientcredentials.Config{
 		ClientID:     clientId,
 		ClientSecret: clientSecret,
 		TokenURL:     provider.Endpoint().TokenURL,
 		Scopes:       []string{oidc.ScopeOpenID, "theme", "folio", "vin-validate"},
 	}
 
-	err = api.UpdateTemplate(CredConfig.Client(ctx), endpoints["theme"])
+	err = api.UpdateTemplate(credConfig.Client(ctx), endpoints["theme"])
 
 	if err != nil {
 		panic(err)
@@ -63,26 +64,23 @@ func SetupRoutes(host, clientId, clientSecret string, endpoints map[string]strin
 	fs := http.FileServer(distPath)
 	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", fs))
 
-	lock := open.NewUILock(authConfig)
+	lock := open.NewUILock(provider, AuthConfig)
+
 	r.HandleFunc("/login", lock.Login).Methods(http.MethodGet)
 	r.HandleFunc("/callback", lock.Callback).Methods(http.MethodGet)
 
-	oidcConfig := &oidc.Config{
-		ClientID: clientId,
-	}
-	v := provider.Verifier(oidcConfig)
-
-	gmw := open.NewGhostware(CredConfig)
+	gmw := open.NewGhostware(credConfig)
 	r.HandleFunc("/", gmw.GhostMiddleware(Index(tmpl))).Methods(http.MethodGet)
 	r.HandleFunc("/{pagesize:[A-Z][0-9]+}", gmw.GhostMiddleware(SearchAds(tmpl))).Methods(http.MethodGet)
 	r.HandleFunc("/{pagesize:[A-Z][0-9]+}/{hash:[a-zA-Z0-9]+={0,2}}", gmw.GhostMiddleware(SearchAds(tmpl))).Methods(http.MethodGet)
 	r.HandleFunc("/{key:[0-9]+\\x60[0-9]+}", gmw.GhostMiddleware(ViewAd(tmpl))).Methods(http.MethodGet)
 
 	crt := r.PathPrefix("/create").Subrouter()
-	crt.HandleFunc("", open.LoginMiddleware(v, GetCreation(tmpl))).Methods(http.MethodGet)
-	crt.HandleFunc("/step2/{vin:[a-zA-Z0-9]+}", open.LoginMiddleware(v, GetStep2(tmpl))).Methods(http.MethodGet)
-	crt.HandleFunc("/step3/{key:[0-9]+\\x60[0-9]+}", open.LoginMiddleware(v, GetStep3(tmpl))).Methods(http.MethodGet)
+	crt.HandleFunc("", GetCreation(tmpl)).Methods(http.MethodGet)
+	crt.HandleFunc("/step2/{vin:[a-zA-Z0-9]+}", GetStep2(tmpl)).Methods(http.MethodGet)
+	crt.HandleFunc("/step3/{key:[0-9]+\\x60[0-9]+}", GetStep3(tmpl)).Methods(http.MethodGet)
 
+	crt.Use(lock.Middleware)
 	return r
 }
 
@@ -96,7 +94,7 @@ func FullMenu() *menu.Menu {
 
 func ThemeContentMod() mix.ModFunc {
 	return func(f mix.MixerFactory, r *http.Request) {
-		clnt := CredConfig.Client(r.Context())
+		clnt := credConfig.Client(r.Context())
 
 		content, err := folio.FetchDisplay(clnt, Endpoints["folio"])
 
