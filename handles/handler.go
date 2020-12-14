@@ -37,7 +37,7 @@ func SetupRoutes(host, clientId, clientSecret string, endpoints map[string]strin
 		ClientSecret: clientSecret,
 		Endpoint:     provider.Endpoint(),
 		RedirectURL:  host + "/callback",
-		Scopes:       []string{oidc.ScopeOpenID, "vin-validate"},
+		Scopes:       []string{oidc.ScopeOpenID, oidc.ScopeOfflineAccess, "vin-validate"},
 	}
 
 	credConfig = &clientcredentials.Config{
@@ -64,23 +64,30 @@ func SetupRoutes(host, clientId, clientSecret string, endpoints map[string]strin
 	fs := http.FileServer(distPath)
 	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", fs))
 
-	lock := open.NewUILock(provider, AuthConfig)
+	lock := open.NewHybridLock(provider, credConfig, AuthConfig)
 
 	r.HandleFunc("/login", lock.Login).Methods(http.MethodGet)
 	r.HandleFunc("/callback", lock.Callback).Methods(http.MethodGet)
+	r.HandleFunc("/logout", lock.Logout).Methods(http.MethodGet)
+	r.HandleFunc("/refresh", lock.Refresh).Methods(http.MethodGet)
 
-	gmw := open.NewGhostware(credConfig)
-	r.HandleFunc("/", gmw.GhostMiddleware(Index(tmpl))).Methods(http.MethodGet)
-	r.HandleFunc("/{pagesize:[A-Z][0-9]+}", gmw.GhostMiddleware(SearchAds(tmpl))).Methods(http.MethodGet)
-	r.HandleFunc("/{pagesize:[A-Z][0-9]+}/{hash:[a-zA-Z0-9]+={0,2}}", gmw.GhostMiddleware(SearchAds(tmpl))).Methods(http.MethodGet)
-	r.HandleFunc("/{key:[0-9]+\\x60[0-9]+}", gmw.GhostMiddleware(ViewAd(tmpl))).Methods(http.MethodGet)
+	fact := mix.NewPageFactory(tmpl)
+	fact.AddMenu(FullMenu())
+	fact.AddModifier(mix.EndpointMod(Endpoints))
+	fact.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
+	fact.AddModifier(ThemeContentMod())
+
+	r.Handle("/", lock.Protect(Index(fact))).Methods(http.MethodGet)
+	r.Handle("/{pagesize:[A-Z][0-9]+}", lock.Protect(SearchAds(fact))).Methods(http.MethodGet)
+	r.Handle("/{pagesize:[A-Z][0-9]+}/{hash:[a-zA-Z0-9]+={0,2}}", lock.Protect(SearchAds(fact))).Methods(http.MethodGet)
+	r.Handle("/{key:[0-9]+\\x60[0-9]+}", lock.Protect(ViewAd(fact))).Methods(http.MethodGet)
 
 	crt := r.PathPrefix("/create").Subrouter()
-	crt.HandleFunc("", GetCreation(tmpl)).Methods(http.MethodGet)
-	crt.HandleFunc("/step2/{vin:[a-zA-Z0-9]+}", GetStep2(tmpl)).Methods(http.MethodGet)
-	crt.HandleFunc("/step3/{key:[0-9]+\\x60[0-9]+}", GetStep3(tmpl)).Methods(http.MethodGet)
+	crt.HandleFunc("", GetCreation(fact)).Methods(http.MethodGet)
+	crt.HandleFunc("/step2/{vin:[a-zA-Z0-9]+}", GetStep2(fact)).Methods(http.MethodGet)
+	crt.HandleFunc("/step3/{key:[0-9]+\\x60[0-9]+}", GetStep3(fact)).Methods(http.MethodGet)
+	crt.Use(lock.Protect)
 
-	crt.Use(lock.Middleware)
 	return r
 }
 
@@ -93,7 +100,7 @@ func FullMenu() *menu.Menu {
 }
 
 func ThemeContentMod() mix.ModFunc {
-	return func(f mix.MixerFactory, r *http.Request) {
+	return func(b mix.Bag, r *http.Request) {
 		clnt := credConfig.Client(r.Context())
 
 		content, err := folio.FetchDisplay(clnt, Endpoints["folio"])
@@ -104,6 +111,6 @@ func ThemeContentMod() mix.ModFunc {
 			return
 		}
 
-		f.SetValue("Folio", content)
+		b.SetValue("Folio", content)
 	}
 }

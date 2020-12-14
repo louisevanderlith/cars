@@ -3,7 +3,7 @@ module github.com/louisevanderlith/cars
 require (
 	github.com/coreos/go-oidc v2.2.1+incompatible
 	github.com/gorilla/mux v1.7.4
-	github.com/louisevanderlith/droxolite v1.19.3
+	github.com/louisevanderlith/droxolite v1.20.2
 	github.com/louisevanderlith/folio v1.0.9
 	github.com/louisevanderlith/husk v1.7.6
 	github.com/louisevanderlith/theme v1.0.3

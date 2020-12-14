@@ -6,7 +6,6 @@ import (
 	"github.com/louisevanderlith/husk/keys"
 	"github.com/louisevanderlith/vin/api"
 	"golang.org/x/oauth2"
-	"html/template"
 	"log"
 	"net/http"
 )
@@ -16,14 +15,10 @@ type Step struct {
 	Info interface{}
 }
 
-func GetCreation(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 1", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetCreation(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		err := mix.Write(w, pge.Create(r, Step{No: 1}))
+		data := Step{No: 1}
+		err := mix.Write(w, fact.Create(r, "Step 1", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -32,12 +27,7 @@ func GetCreation(tmpl *template.Template) http.HandlerFunc {
 }
 
 // /:vin
-func GetStep2(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 2", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep2(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vin := drx.FindParam(r, "vin")
 
@@ -48,7 +38,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 
 		tkn := r.Context().Value("Token").(oauth2.Token)
 		clnt := AuthConfig.Client(r.Context(), &tkn)
-		result, err := api.LookupVIN(clnt, Endpoints["vin"], vin)
+		info, err := api.LookupVIN(clnt, Endpoints["vin"], vin)
 
 		if err != nil {
 			log.Println("VIN Lookup Error", err)
@@ -56,7 +46,8 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, Step{No: 2, Info: result}))
+		data := Step{No: 2, Info: info}
+		err = mix.Write(w, fact.Create(r, "Step 2", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -64,12 +55,7 @@ func GetStep2(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep3(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 3", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep3(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vehicleKey, err := keys.ParseKey(drx.FindParam(r, "vehicleKey"))
 
@@ -78,8 +64,10 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 			http.Error(w, "", http.StatusBadRequest)
 			return
 		}
-		pge.ChangeTitle("Sell your Vehicle: Step 3")
-		err = mix.Write(w, pge.Create(r, Step{No: 3, Info: vehicleKey}))
+
+		//pge.ChangeTitle("Sell your Vehicle: Step 3")
+		data := Step{No: 3, Info: vehicleKey}
+		err = mix.Write(w, fact.Create(r, "Step 3", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -87,15 +75,11 @@ func GetStep3(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep4(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 4", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep4(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Sell your Vehicle: Step 4")
-		err := mix.Write(w, pge.Create(r, Step{No: 4}))
+		//pge.ChangeTitle("Sell your Vehicle: Step 4")
+		data := Step{No: 4}
+		err := mix.Write(w, fact.Create(r, "Step 4", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -103,15 +87,11 @@ func GetStep4(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep5(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 5", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep5(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Sell your Vehicle: Step 5")
-		err := mix.Write(w, pge.Create(r, Step{No: 5}))
+		//pge.ChangeTitle("Sell your Vehicle: Step 5")
+		data := Step{No: 5}
+		err := mix.Write(w, fact.Create(r, "Step 5", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -119,15 +99,11 @@ func GetStep5(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep6(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 6", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep6(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Sell your Vehicle: Step 6")
-		err := mix.Write(w, pge.Create(r, Step{No: 6}))
+		//pge.ChangeTitle("Sell your Vehicle: Step 6")
+		data := Step{No: 6}
+		err := mix.Write(w, fact.Create(r, "Step 6", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -135,15 +111,11 @@ func GetStep6(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep7(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 7", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep7(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Sell your Vehicle: Step 7")
-		err := mix.Write(w, pge.Create(r, Step{No: 7}))
+		//pge.ChangeTitle("Sell your Vehicle: Step 7")
+		data := Step{No: 7}
+		err := mix.Write(w, fact.Create(r, "Step 7", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
@@ -151,15 +123,11 @@ func GetStep7(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func GetStep8(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Step 8", tmpl, "./views/create.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetStep8(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Sell your Vehicle: Step 8")
-		err := mix.Write(w, pge.Create(r, Step{No: 8}))
+		//pge.ChangeTitle("Sell your Vehicle: Step 8")
+		data := Step{No: 8}
+		err := mix.Write(w, fact.Create(r, "Step 8", "./views/create.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)

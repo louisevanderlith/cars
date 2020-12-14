@@ -130,8 +130,8 @@ github.com/louisevanderlith/droxolite v1.16.7 h1:v7qrns8kHmy2CVyOjPFMEX6HLSO7SM3
 github.com/louisevanderlith/droxolite v1.16.7/go.mod h1:Qc1b6TuO10svdFXsk5Tggo7eNI+gcGa9VjcKedKIFNU=
 github.com/louisevanderlith/droxolite v1.16.8 h1:XVc82b/Bt/kbu3R8coizfuVnAByR2ErYLpeXfhMrPCU=
 github.com/louisevanderlith/droxolite v1.16.8/go.mod h1:Qc1b6TuO10svdFXsk5Tggo7eNI+gcGa9VjcKedKIFNU=
-github.com/louisevanderlith/droxolite v1.19.3 h1:JmXrhJ5IOcQ3abc/GHRN5FlnJrujmbU1ZzirapUyiXE=
-github.com/louisevanderlith/droxolite v1.19.3/go.mod h1:mpVaXNgNd1rrSex8eH8Fllx+aRr6DPgGsNhJI6j6ftE=
+github.com/louisevanderlith/droxolite v1.20.2 h1:c8BE8x7BxZq0R6E1PVQCTtKHU0c7p3tLL7JdU7Qa8GA=
+github.com/louisevanderlith/droxolite v1.20.2/go.mod h1:mpVaXNgNd1rrSex8eH8Fllx+aRr6DPgGsNhJI6j6ftE=
 github.com/louisevanderlith/folio v1.0.9 h1:Vl7cqD9HIBTQahWvYN/DJH5p3d/39rZEQ7Dfp7of+0s=
 github.com/louisevanderlith/folio v1.0.9/go.mod h1:H1FXBO3YUvn2PSGtxn+7ukzLgovAFSDR84ICprWRM0c=
 github.com/louisevanderlith/husk v1.7.6 h1:etAg02vmiMWbGwifm1OgcjBk8nZUiArzt9+0KU2nUMs=

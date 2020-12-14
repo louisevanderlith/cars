@@ -6,21 +6,15 @@ import (
 	"github.com/louisevanderlith/husk/keys"
 	"github.com/louisevanderlith/vehicle/api"
 	"golang.org/x/oauth2"
-	"html/template"
 	"log"
 	"net/http"
 )
 
-func GetAds(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func GetAds(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		tkn := r.Context().Value("Token").(oauth2.Token)
 		clnt := AuthConfig.Client(r.Context(), &tkn)
-		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], "A10")
+		data, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], "A10")
 
 		if err != nil {
 			log.Println("Fetch Cars Error", err)
@@ -28,7 +22,7 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, result))
+		err = mix.Write(w, fact.Create(r, "Ads", "./views/ads.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println(err)
@@ -36,18 +30,13 @@ func GetAds(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func SearchAds(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func SearchAds(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		pagesize := drx.FindParam(r, "pagesize")
 
 		tkn := r.Context().Value("Token").(oauth2.Token)
 		clnt := AuthConfig.Client(r.Context(), &tkn)
-		result, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], pagesize)
+		data, err := api.FetchAllVehicles(clnt, Endpoints["vehicle"], pagesize)
 
 		if err != nil {
 			log.Println(err)
@@ -55,7 +44,7 @@ func SearchAds(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, result))
+		err = mix.Write(w, fact.Create(r, "Ads", "./views/ads.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println(err)
@@ -63,14 +52,8 @@ func SearchAds(tmpl *template.Template) http.HandlerFunc {
 	}
 }
 
-func ViewAd(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Ads", tmpl, "./views/ads.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func ViewAd(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
 		key, err := keys.ParseKey(drx.FindParam(r, "key"))
 
 		if err != nil {
@@ -81,7 +64,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 
 		tkn := r.Context().Value("Token").(oauth2.Token)
 		clnt := AuthConfig.Client(r.Context(), &tkn)
-		result, err := api.FetchVehicleInfo(clnt, Endpoints["vehicle"], key)
+		data, err := api.FetchVehicleInfo(clnt, Endpoints["vehicle"], key)
 
 		if err != nil {
 			log.Println("Vehicle Info Error", err)
@@ -89,7 +72,7 @@ func ViewAd(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, result))
+		err = mix.Write(w, fact.Create(r, "Ad View", "./views/adview.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)

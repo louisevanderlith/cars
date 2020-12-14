@@ -7,20 +7,14 @@ import (
 	"github.com/louisevanderlith/vehicle/api"
 	"github.com/louisevanderlith/vehicle/core"
 	"golang.org/x/oauth2"
-	"html/template"
 	"log"
 	"net/http"
 	"strconv"
 )
 
-func Index(tmpl *template.Template) http.HandlerFunc {
-	pge := mix.PreparePage("Index", tmpl, "./views/index.html")
-	pge.AddMenu(FullMenu())
-	pge.AddModifier(mix.EndpointMod(Endpoints))
-	pge.AddModifier(mix.IdentityMod(AuthConfig.ClientID))
-	pge.AddModifier(ThemeContentMod())
+func Index(fact mix.MixerFactory) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		pge.ChangeTitle("Cars")
+		//pge.ChangeTitle("Cars")
 
 		tkn := r.Context().Value("Token").(oauth2.Token)
 		clnt := AuthConfig.Client(r.Context(), &tkn)
@@ -32,7 +26,8 @@ func Index(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
-		err = mix.Write(w, pge.Create(r, GenerateStockStats(result)))
+		data := GenerateStockStats(result)
+		err = mix.Write(w, fact.Create(r, "Index", "./views/index.html", mix.NewDataBag(data)))
 
 		if err != nil {
 			log.Println("Serve Error", err)
